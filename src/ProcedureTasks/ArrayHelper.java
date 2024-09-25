@@ -26,10 +26,7 @@ public class ArrayHelper
         int [] newArray = new int[array.length + 1];
         for (int i=0; i < newArray.length; i++)
         {
-            if (i == newArray.length - 1)
-                newArray[i] = number;
-            else
-                newArray[i] = array[i];
+            newArray[i] = (i == newArray.length-1) ? number : array[i];
         }
         return newArray;
     }
