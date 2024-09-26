@@ -21,7 +21,7 @@ public class House
         return quanityFloors;
     }
 
-    public String showHouseInfo()
+    public String toString()
     {
         String wordFloor = (quanityFloors % 10 == 1) ? " этажом" : " этажами";
         return "Дом с " + quanityFloors + wordFloor;

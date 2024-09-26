@@ -1,11 +1,11 @@
-package OOP.lesson1.homework;
+package OOP.lesson2.classwork;
 
 public class Point
 {
-    public double x;
-    public double y;
+    public int x;
+    public int y;
 
-    public Point(double x, double y)
+    public Point(int x, int y)
     {
         this.x = x;
         this.y = y;

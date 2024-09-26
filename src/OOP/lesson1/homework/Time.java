@@ -21,7 +21,7 @@ public class Time
         return seconds;
     }
 
-    public String showTime()
+    public String toString()
     {
         int hours = seconds/3600;
         int minutes = (seconds - hours*3600)/60;

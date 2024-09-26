@@ -28,7 +28,7 @@ public class Human
         return height;
     }
 
-    public String showHuman()
+    public String toString()
     {
         return this.name + ", height = " + this.height;
     }

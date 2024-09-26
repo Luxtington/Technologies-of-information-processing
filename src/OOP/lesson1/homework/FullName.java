@@ -24,7 +24,7 @@ public class FullName
         this.surname = surname;
     }
 
-    public String showFullName()
+    public String toString()
     {
         String copySurname = (surname == null)? "" : surname;
         String copyName = (name == null)? "" : name;
