@@ -16,14 +16,14 @@ public class Human
         this.height = height;
     }
 
-    public void set_height(int height)
+    public void setHeight(int height)
     {
         if (height < averageHeight)
             throw new IllegalArgumentException("Incorrect height of human");
         this.height = height;
     }
 
-    public int get_height()
+    public int getHeight()
     {
         return height;
     }

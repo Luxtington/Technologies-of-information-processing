@@ -15,8 +15,8 @@ public class Runner
         System.out.printf("%s; %s; %s\n", pers1, pers2, pers3);
         // features
         Human pers4 = new Human("Normis", 110);
-        pers4.set_height(115);
-        System.out.println(pers4.get_height());
+        pers4.setHeight(115);
+        System.out.println(pers4.getHeight());
 
         FullName ex1 = new FullName("Petrov", "Petr", "Petrovich");
         FullName ex2 = new FullName("Sidorov", "Vasiliy");

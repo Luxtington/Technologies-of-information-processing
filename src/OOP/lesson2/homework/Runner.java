@@ -56,11 +56,14 @@ public class Runner
         ex2.name = "Petr";
         FullName ex3 = new FullName();
         ex3.name = "Boris";
+        FullName ex4 = new FullName();
+        ex4.name = "Valentina";
 
         Person pers1 = new Person(ex1, "male");
         Person pers2 = new Person(ex2, pers1, "male");
         Person pers3 = new Person(ex3, pers2, "male");
+        Person pers4 = new Person(ex4, pers3, "female");
 
-        System.out.println(pers1 + " | " + pers2 + " | " + pers3);
+        System.out.println(pers1 + " | " + pers2 + " | " + pers3 + " | " + pers4);
     }
 }

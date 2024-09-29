@@ -36,11 +36,14 @@ public class Person
             return fullName + "";
 
         if (fullName.surname == null)
-            fullName.surname = father.fullName.surname;
+        {
+            fullName.surname = (gender == "male")? father.fullName.surname : father.fullName.surname + "a";
+        }
 
-        if (fullName.patronymic == null) // !!! gender and ending
-            fullName.patronymic = father.fullName.name + "ovich";
-
+        if (fullName.patronymic == null)
+        {
+            fullName.patronymic = (gender == "male")? father.fullName.name + "ovich" : father.fullName.name + "ovna";
+        }
         return fullName + "";
     }
 
