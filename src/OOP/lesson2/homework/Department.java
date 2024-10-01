@@ -8,6 +8,11 @@ public class Department
     public Department(String title)
     {
         this.title = title;
-        //this.chief = chief;
+    }
+
+    public String toString()
+    {
+        if (chief == null) return title + " department without chief";
+        return title + " department, his chief " + chief.surname;
     }
 }

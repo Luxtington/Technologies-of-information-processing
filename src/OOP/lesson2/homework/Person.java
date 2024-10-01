@@ -4,30 +4,33 @@ public class Person
 {
     public FullName fullName;
     public Person father;
-    private String gender;
 
-    public Person(FullName fullName, Person father, String gender)
+    public Person(FullName fullName, Person father)
     {
-        if (!(gender == "male" || gender == "female"))
-            throw new IllegalArgumentException("Incorrect name of gender");
-
         this.fullName = fullName;
         this.father = father;
-        this.gender = gender;
     }
 
-    public Person(FullName fullName, String gender)
+    public Person(FullName fullName)
     {
-        if (!(gender == "male" || gender == "female"))
-            throw new IllegalArgumentException("Incorrect name of gender");
-
         this.fullName = fullName;
-        this.gender = gender;
     }
 
-    public String getGender()
+    private Person()
     {
-        return gender;
+        // just for creating copyFather in this toString-method
+    }
+
+    public String getFatherSurname()
+    {
+        if (father == null) return ""; // father's name wasn't found
+        else if (father.fullName.surname != null) return father.fullName.surname;
+        return father.getFatherSurname();
+    }
+
+    public FullName getFullName()
+    {
+        return fullName;
     }
 
     public String toString()
@@ -35,16 +38,19 @@ public class Person
         if (father == null)
             return fullName + "";
 
+        FullName copyFullName = new FullName(); // for recording the available data
+        copyFullName.surname = (fullName.surname == null) ? null : fullName.surname;
+        copyFullName.name = (fullName.name == null) ? null : fullName.name;
+        copyFullName.patronymic = (fullName.patronymic == null) ? null : fullName.patronymic;
+
         if (fullName.surname == null)
-        {
-            fullName.surname = (gender == "male")? father.fullName.surname : father.fullName.surname + "a";
-        }
+            copyFullName.surname = getFatherSurname();
 
-        if (fullName.patronymic == null)
-        {
-            fullName.patronymic = (gender == "male")? father.fullName.name + "ovich" : father.fullName.name + "ovna";
-        }
-        return fullName + "";
+
+        if (fullName.patronymic == null && father.fullName.name != null)
+            copyFullName.patronymic = father.fullName.name + "ovich";
+        else copyFullName.patronymic = "";
+
+        return copyFullName.toString();
     }
-
 }

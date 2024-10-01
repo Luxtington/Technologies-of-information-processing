@@ -24,19 +24,25 @@ public class Runner
 
         l1.updateLineCoords(p5, p6); // updating line's 1 coords
 
-        System.out.println(l1 + " ||| " + l2 + " ||| " + l3); */
+        System.out.println(l1 + " ||| " + l2 + " ||| " + l3);*/
 
         /*Worker person1 = new Worker("Petrov");
         Worker person2 = new Worker("Kozlov");
         Worker person3 = new Worker("Sidorov");
+        Worker person4 = new Worker("Oslov");
+        Worker person5 = new Worker("Milov");
 
         Department dep1 = new Department("IT");
         dep1.chief = person2;
+
+        Department dep2 = new Department("SMM");
+
         person1.setDepartment(dep1);
         person2.setDepartment(dep1);
         person3.setDepartment(dep1);
+        person5.setDepartment(dep2);
 
-        System.out.println(person1 + "\n" + person2 + "\n" + person3);*/
+        System.out.println(person1 + "\n" + person2 + "\n" + person3 + "\n" + person4 + "\n" + person5);*/
 
         /*FullName ex1 = new FullName("Kleopatra");
         FullName ex2 = new FullName("Pushkin", "Aleksandr", "Sergeevich");
@@ -50,20 +56,15 @@ public class Runner
 
         FullName ex1 = new FullName();
         ex1.surname = "Chudov";
-        ex1.name = "Ivan";
         FullName ex2 = new FullName();
-        ex2.surname = "Chudov";
         ex2.name = "Petr";
         FullName ex3 = new FullName();
         ex3.name = "Boris";
-        FullName ex4 = new FullName();
-        ex4.name = "Valentina";
 
-        Person pers1 = new Person(ex1, "male");
-        Person pers2 = new Person(ex2, pers1, "male");
-        Person pers3 = new Person(ex3, pers2, "male");
-        Person pers4 = new Person(ex4, pers3, "female");
+        Person pers1 = new Person(ex1);
+        Person pers2 = new Person(ex2, pers1);
+        Person pers3 = new Person(ex3, pers2);
 
-        System.out.println(pers1 + " | " + pers2 + " | " + pers3 + " | " + pers4);
+        System.out.println(pers1 + " | " + pers2 + " | " + pers3);
     }
 }

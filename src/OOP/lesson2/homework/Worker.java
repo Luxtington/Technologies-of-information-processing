@@ -17,8 +17,10 @@ public class Worker
 
     public String toString()
     {
-        if (surname == department.chief.surname)
+        if (department == null)
+            return surname + " doesn't work in someone department";
+        if (department.chief == this)
             return surname + " is the chief of " + department.title + " department";
-        return surname + " works in " + department.title + " department, his chief is " + department.chief.surname;
+        return surname + " works in " + department;
     }
 }
