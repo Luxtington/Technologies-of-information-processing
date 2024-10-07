@@ -13,13 +13,13 @@ public class Worker
     public void setDepartment(Department department)
     {
         this.department = department;
-        this.department.workers[this.department.countWorkers++] = this;
+        this.department.addWorker(this);
     }
 
     public String showColleagues()
     {
         String res = "";
-        for (int i=0; i<department.countWorkers; i++)
+        for (int i = 0; i<department.currCountWorkers; i++)
         {
             res+=department.workers[i].surname;
             res+=" ";
