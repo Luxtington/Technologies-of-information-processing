@@ -1,4 +1,4 @@
-package OOP.lesson1.homework;
+package OOP.lesson1_1.homework;
 
 public class House
 {

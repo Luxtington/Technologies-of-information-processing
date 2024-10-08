@@ -1,4 +1,4 @@
-package OOP.lesson3.homework;
+package OOP.lesson1_3.homework;
 
 import java.util.Arrays;
 

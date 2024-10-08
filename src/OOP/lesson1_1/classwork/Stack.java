@@ -1,4 +1,4 @@
-package OOP.lesson1.classwork;
+package OOP.lesson1_1.classwork;
 
 public class Stack
 {

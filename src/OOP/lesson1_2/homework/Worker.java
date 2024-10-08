@@ -1,4 +1,4 @@
-package OOP.lesson2.homework;
+package OOP.lesson1_2.homework;
 
 public class Worker
 {

@@ -1,4 +1,4 @@
-package OOP.lesson2.classwork;
+package OOP.lesson1_2.classwork;
 
 public class Line
 {
