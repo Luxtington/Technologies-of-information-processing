@@ -6,13 +6,32 @@ public class Department
     public Worker chief;
 
     private int maxQuantityWorkers = 1;
-    public Worker [] workers = new Worker[maxQuantityWorkers];
-    public int currCountWorkers = 0;
+    private Worker [] workers = new Worker[maxQuantityWorkers];
+    private int currCountWorkers = 0;
 
     public Department(String title, Worker chief)
     {
         this.title = title;
         this.chief = chief;
+    }
+
+    public Worker[] getListWorkers()
+    {
+        Worker [] newWorkers = new Worker[currCountWorkers];
+        for (int i=0; i<currCountWorkers; i++)
+            newWorkers[i] = workers[i];
+
+        return newWorkers;
+    }
+
+    public int getMaxQuantityWorkers()
+    {
+        return maxQuantityWorkers;
+    }
+
+    public int getCurrCountWorkers()
+    {
+        return currCountWorkers;
     }
 
     private Worker[] extendWorkers(Worker [] workers)

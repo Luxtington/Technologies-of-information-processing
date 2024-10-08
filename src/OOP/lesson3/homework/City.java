@@ -1,10 +1,12 @@
 package OOP.lesson3.homework;
 
+import java.util.Arrays;
+
 public class City
 {
     public String title;
     public Way [] ways;
-    public static int cityNumber;
+    private static int cityNumber;
 
     {
         cityNumber++;
@@ -15,6 +17,11 @@ public class City
         this.title = title;
     }
 
+    public static int getCityNumber()
+    {
+        return cityNumber;
+    }
+
     public void setWays(Way [] ways)
     {
         this.ways = ways;
@@ -22,15 +29,8 @@ public class City
 
     public String toString()
     {
-        String res = title + "-ways: [ ";
-        for (int i=0; i<ways.length; i++)
-        {
-            res+=ways[i];
-            if (i < ways.length-1)
-                res+=", ";
-            else
-                res+=" ]";
-        }
+        String res = title + "-ways: ";
+        res += Arrays.toString(ways);
         return res;
     }
 }

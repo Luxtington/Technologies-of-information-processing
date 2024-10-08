@@ -16,12 +16,13 @@ public class Worker
         this.department.addWorker(this);
     }
 
-    public String showColleagues()
+    public String showAllWorkers()
     {
         String res = "";
-        for (int i = 0; i<department.currCountWorkers; i++)
+        for (int i = 0; i<department.getCurrCountWorkers(); i++)
         {
-            res+=department.workers[i].surname;
+            Worker [] workers = department.getListWorkers();
+            res+=workers[i].surname;
             res+=" ";
         }
         return res;

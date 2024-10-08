@@ -1,5 +1,7 @@
 package OOP.lesson3.homework;
 
+import java.util.Arrays;
+
 public class Main
 {
     public static void main(String[] args) {
@@ -64,7 +66,7 @@ public class Main
 
         Way[][] allWays = {aAllAWays, bAllAWays, cAllAWays, dAllAWays, eAllAWays, fAllAWays}; // for set ways for one city
 
-        for (int i = 0; i < City.cityNumber; i++) {
+        for (int i = 0; i < City.getCityNumber(); i++) {
             allCities[i].setWays(allWays[i]);
             System.out.println(allCities[i]);
         }*/
@@ -79,7 +81,6 @@ public class Main
         pers3.setDepartment(dep1);
 
         System.out.println(pers1 + " | " + pers2 + " | " + pers3);
-        System.out.println(pers3.showColleagues());
-
+        System.out.println(pers3.showAllWorkers());
     }
 }
