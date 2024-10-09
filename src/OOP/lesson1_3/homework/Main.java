@@ -26,7 +26,7 @@ public class Main
         System.out.println(st2);
         System.out.println(st3);*/
 
-        /*Point p1 = new Point(1,5);
+        Point p1 = new Point(1,5);
         Point p2 = new Point(2,8);
         Point p3 = new Point(5,3);
         Point p4 = new Point(2,-5);
@@ -34,6 +34,7 @@ public class Main
 
         Point [] points1 = {p1, p2, p3};
         Point [] points2 = {p1, p4, p5, p3};
+        Point [] points3 = {new Point(99, 99), new Point(300, 400)};
 
         Polyline line1 = new Polyline(points1);
         Polyline line2 = new Polyline(points2);
@@ -44,7 +45,11 @@ public class Main
         line1.points[0].updateCoords(-1, -5);
 
         System.out.println(line1);
-        System.out.println(line2);*/
+        System.out.println(line2);
+
+        line1.addPoints(points3);
+        System.out.println(line1);
+        System.out.println("Length of polyline = " + line1.getLength());
 
         /*City cityA = new City("A"), cityB = new City("B"), cityC = new City("C");
         City cityD = new City("D"), cityE = new City("E"), cityF = new City("F");
@@ -71,7 +76,7 @@ public class Main
             System.out.println(allCities[i]);
         }*/
 
-        Worker pers1 = new Worker("Petrov");
+        /*Worker pers1 = new Worker("Petrov");
         Worker pers2 = new Worker("Kozlov");
         Worker pers3 = new Worker("Sidorov");
 
@@ -81,6 +86,6 @@ public class Main
         pers3.setDepartment(dep1);
 
         System.out.println(pers1 + " | " + pers2 + " | " + pers3);
-        System.out.println(pers3.showAllWorkers());
+        System.out.println(pers3.showAllWorkers());*/
     }
 }

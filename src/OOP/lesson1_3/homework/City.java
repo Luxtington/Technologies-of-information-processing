@@ -12,9 +12,15 @@ public class City
         cityNumber++;
     }
 
-    public City(String title)
+    public City(String title, Way [] ways)
     {
         this.title = title;
+        this.ways = ways;
+    }
+
+    public City(String title)
+    {
+        this(title, null);
     }
 
     public static int getCityNumber()
