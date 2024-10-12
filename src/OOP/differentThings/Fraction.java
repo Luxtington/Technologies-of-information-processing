@@ -2,8 +2,8 @@ package OOP.differentThings;
 
 public class Fraction
 {
-    final int numerator;
-    final int denominator;
+    private final int numerator;
+    private final int denominator;
 
     public Fraction(int numerator, int denominator)
     {

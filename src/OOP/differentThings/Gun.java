@@ -2,13 +2,14 @@ package OOP.differentThings;
 
 public class Gun
 {
-    private int bullets;
+    private int currBullets = 0;
+    private final int maxBullets;
 
-    public Gun(int bullets)
+    public Gun(int maxBullets)
     {
-        if (bullets<0)
+        if (maxBullets < 0)
             throw new IllegalArgumentException("Incorrect value of bullets");
-        this.bullets = bullets;
+        this.maxBullets = maxBullets;
     }
 
     public Gun()
@@ -16,26 +17,51 @@ public class Gun
         this(5);
     }
 
-    public int getBullets()
+    public int getMaxBullets()
     {
-        return bullets;
+        return maxBullets;
     }
 
-    public void setBullets()
+    public int getCurrBullets()
     {
-        if (bullets<0)
+        return currBullets;
+    }
+
+    public int loadBullets(int bullets)
+    {
+        if (bullets <0)
             throw new IllegalArgumentException("Incorrect value of bullets");
-        this.bullets = bullets;
+
+        if (bullets + currBullets > maxBullets)
+        {
+            currBullets = maxBullets;
+            return currBullets+bullets-maxBullets; // return excess bullets
+        }
+
+        currBullets += bullets;
+        return 0;
+    }
+
+    public int removeBullets()
+    {
+        int copyBullets = currBullets;
+        currBullets = 0;
+        return copyBullets;
+    }
+
+    public boolean isEmpty()
+    {
+        return currBullets == 0;
     }
 
     public void makeShot()
     {
-        if (bullets > 0)
+        if (this.isEmpty())
+            System.out.println("Klac!");
+        else
         {
             System.out.println("Bax!");
-            bullets--;
+            currBullets--;
         }
-        else
-            System.out.println("Klac!");
     }
 }
