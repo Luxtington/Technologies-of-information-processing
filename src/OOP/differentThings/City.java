@@ -1,26 +1,27 @@
 package OOP.differentThings;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 
 public class City
 {
     public String title;
-    public Way[] ways;
-    private static int cityNumber;
+    public List<Way> ways = new ArrayList<>();
+    private static int cityNumber; // for comfortable print in Main
 
     {
         cityNumber++;
     }
 
-    public City(String title, Way[] ways)
+    public City(String title, List<Way> ways)
     {
         this.title = title;
-        this.ways = ways;
+        setWays(ways);
     }
 
     public City(String title)
     {
-        this(title, null);
+        this(title, new ArrayList<>());
     }
 
     public static int getCityNumber()
@@ -28,15 +29,40 @@ public class City
         return cityNumber;
     }
 
-    public void setWays(Way[] ways)
+    public void setWays(List<Way> ways)
     {
-        this.ways = ways;
+        for (int i=0; i < ways.size(); i++)
+        {
+            this.setWay(ways.get(i));
+        }
+    }
+
+    public void setWay(Way way)
+    {
+        if (ways.size() == 0)
+            ways.add(way);
+        else
+        {
+            for (int i=0; i < ways.size(); i++)
+            {
+                if (ways.get(i).city == way.city)
+                    throw new IllegalArgumentException("Cannot be two  same ways to the " + way.city.title + "-city");
+
+            }
+            ways.add(way);
+        }
+
+    }
+
+    public void removeWay(Way way)
+    {
+        ways.remove(way);
     }
 
     public String toString()
     {
         String res = title + "-ways: ";
-        res += Arrays.toString(ways);
+        res += ways.toString();
         return res;
     }
 }

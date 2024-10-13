@@ -1,17 +1,22 @@
 package OOP.peoplesWithTheirItems;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Student
 {
-    public String name;
-    public int [] marks;
+    private final String name;
+    private List<Integer> marks;
 
-    public Student(String name, int ... marks)
+    public Student(String name, List<Integer> marks)
     {
         this.name = name;
-        if (marks.length > 0)
-            this.marks = marks;
+        for (int i=0; i<marks.size(); i++)
+        {
+            if (!(isCorrectMark(marks.get(i))))
+                throw new IllegalArgumentException("Incorrect value of student's mark");
+        }
+        this.marks = marks;
     }
 
     public double getAverageMark()
@@ -20,28 +25,46 @@ public class Student
             return 0;
 
         int i, sum = 0;
-        for (i=0; i<marks.length; i++)
-            sum+=marks[i];
+        for (i=0; i<marks.size(); i++)
+            sum += marks.get(i);
 
         return sum/(i);
     }
 
-    public String isHeEpcellentStudent()
+    public boolean isHeEpcellentStudent()
     {
-        if (marks != null)
-        {
-            for (int i=0; i<marks.length; i++)
-            {
-                if (marks[i] != 5) return "He isn't an epcellent student";
-            }
-            return "He is an epcellent student";
-        }
-        return "There is no information about this student's marks";
+        return this.getAverageMark() == 5;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public List<Integer> getMarks()
+    {
+        List<Integer> copyMarks = new ArrayList<Integer>();
+        for (int i=0; i < marks.size(); i++)
+            copyMarks.add(marks.get(i));
+        return copyMarks;
+    }
+
+    public void addMark(int mark)
+    {
+        if (isCorrectMark(mark))
+            marks.add(mark);
+        else
+            throw new IllegalArgumentException("Incorrect value of student's mark");
+    }
+
+    private boolean isCorrectMark(int mark)
+    {
+        return (mark >= 2 && mark <= 5);
     }
 
     public String toString()
     {
-        String res = (marks == null) ? (name + " without marks") : (name + ": " + Arrays.toString(marks));
+        String res = (marks == null) ? (name + " without marks") : (name + ": " + marks.toString());
         return res;
     }
 }

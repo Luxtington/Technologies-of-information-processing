@@ -8,10 +8,7 @@ public class Person
 
     public Person(FullName fullName, int height, Person father)
     {
-        if (height<0)
-            throw new IllegalArgumentException("Incorrect value of height");
-        this.height = height;
-
+        this.setHeight(height);
         this.fullName = fullName;
         this.father = father;
     }
@@ -36,14 +33,15 @@ public class Person
 
     public void setHeight(int height)
     {
-        if (height<0) throw new IllegalArgumentException("Incorrect value of height");
+        if (height<0)
+            throw new IllegalArgumentException("Incorrect value of height");
         this.height = height;
     }
 
     public String getFatherSurname()
     {
         if (father == null) return ""; // father's name wasn't found
-        else if (father.fullName.surname != null) return father.fullName.surname;
+        else if (father.fullName.getSurname() != null) return father.fullName.getSurname();
         return father.getFatherSurname();
     }
 
@@ -54,22 +52,32 @@ public class Person
 
     public String toString()
     {
-        if (father == null)
+        if (father == null) // there's no things to find
             return fullName + "";
+        //FullName copyFullName = new FullName(null ,null ,null);
 
-        FullName copyFullName = new FullName(null ,null ,null);
-        copyFullName.surname = (fullName.surname == null) ? null : fullName.surname;
-        copyFullName.name = (fullName.name == null) ? null : fullName.name;
-        copyFullName.patronymic = (fullName.patronymic == null) ? null : fullName.patronymic;
+        String copyName = "", copySurname = "", copyPatronymic = "";
+        if (fullName.getName() != null)
+            copyName = fullName.getName();
 
-        if (fullName.surname == null)
-            copyFullName.surname = getFatherSurname();
+        if (fullName.getSurname() != null)
+            copySurname = fullName.getSurname();
+
+        if (fullName.getPatronymic() != null)
+            copyPatronymic = fullName.getPatronymic();
+
+        //copyFullName.surname = (fullName.getSurname() == null) ? null : fullName.getSurname();
+        //copyFullName.name = (fullName.getName() == null) ? null : fullName.getName();
+        //copyFullName.patronymic = (fullName.getPatronymic() == null) ? null : fullName.getPatronymic();
+
+        if (fullName.getSurname() == null)
+            copySurname = getFatherSurname();
 
 
-        if (fullName.patronymic == null && father.fullName.name != null)
-            copyFullName.patronymic = father.fullName.name + "ovich";
-        else copyFullName.patronymic = "";
+        if (fullName.getPatronymic() == null && father.fullName.getName() != null)
+            copyPatronymic = father.fullName.getName() + "ovich";
+        //else copyFullName.patronymic = "";
 
-        return copyFullName.toString() + ", height = " + height;
+        return copyName + " " + copySurname +  " " + copyPatronymic + ", height = " + height;
     }
 }

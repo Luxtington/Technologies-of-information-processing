@@ -2,16 +2,15 @@ package OOP.peoplesWithTheirItems;
 
 public class Human
 {
-    public FullName fullName;
+    private FullName fullName;
     private int height;
-    public Human father;
+    private final Human father;
 
     public Human(FullName fullName, int height, Human father)
     {
         this.fullName = fullName;
-        if (height < 0)
-            throw new IllegalArgumentException("Incorrect height of human");
-        this.height = height;
+        this.setHeight(height);
+        this.father = father;
     }
 
     public Human(String name, int height)
@@ -19,9 +18,19 @@ public class Human
         this(new FullName(name, null, null), height, null);
     }
 
+    public Human(String name, int height, Human father)
+    {
+        this(new FullName(name, null ,null), height, father);
+    }
+
+    public Human(FullName fullName, int height)
+    {
+        this(fullName, height, null);
+    }
+
     public void setHeight(int height)
     {
-        if (height < 0)
+        if (height < 0 || height > 500)
             throw new IllegalArgumentException("Incorrect height of human");
         this.height = height;
     }
@@ -29,6 +38,16 @@ public class Human
     public int getHeight()
     {
         return height;
+    }
+
+    public FullName getFullName()
+    {
+        return new FullName(fullName.getName(), fullName.getSurname(), fullName.getPatronymic());
+    }
+
+    public Human getFather()
+    {
+        return new Human(father.getFullName(), father.getHeight(), father.getFather());
     }
 
     public String toString()

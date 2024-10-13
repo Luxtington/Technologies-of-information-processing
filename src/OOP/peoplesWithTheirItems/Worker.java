@@ -1,8 +1,11 @@
 package OOP.peoplesWithTheirItems;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Worker
 {
-    public String surname;
+    private String surname;
     public Department department;
 
     public Worker(String surname)
@@ -10,8 +13,18 @@ public class Worker
         this.surname = surname;
     }
 
+    public String getSurname()
+    {
+        return surname;
+    }
+
     public void setDepartment(Department department)
     {
+        if (this.department != null)
+        {
+            if (this.department.getChief() == this)
+                throw new IllegalArgumentException("Chief of " + this.department.getTitle() + " can't work in " + department.getTitle() + " department");
+        }
         this.department = department;
         this.department.addWorker(this);
     }
@@ -21,8 +34,8 @@ public class Worker
         String res = "";
         for (int i = 0; i<department.getCurrCountWorkers(); i++)
         {
-            Worker [] workers = department.getListWorkers();
-            res+=workers[i].surname;
+            List<Worker> workers = department.getListWorkers();
+            res+=workers.get(i).getSurname();
             res+=" ";
         }
         return res;
@@ -32,8 +45,8 @@ public class Worker
     {
         if (department == null)
             return surname + " doesn't work in someone department";
-        if (department.chief == this)
-            return surname + " is the chief of " + department.title + " department";
+        if (department.getChief() == this)
+            return surname + " is the chief of " + department.getTitle() + " department";
         return surname + " works in " + department;
     }
 }
