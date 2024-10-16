@@ -15,18 +15,19 @@ public class Main {
         //h2.getFather().height = 150;
         System.out.println(p2);*/
 
-        List<Integer> marks = new ArrayList<Integer>();
+        /*List<Integer> marks = new ArrayList<Integer>();
         marks.add(2);
         marks.add(5);
         marks.add(3);
         Student s1 = new Student("Petya", marks);
+        marks.add(1);
 
         s1.getMarks().set(0, 1);
         System.out.println(s1);
 
-        s1.addMark(1);
+        //s1.addMark(1);*/
 
-        /*Worker w1 = new Worker("Petrov");
+        Worker w1 = new Worker("Petrov");
         Worker w2 = new Worker("Kozlov");
         Worker w3 = new Worker("Sidorov");
         Worker w4 = new Worker("Volkov");
@@ -39,10 +40,13 @@ public class Main {
 
         //Department dep2 = new Department("CyberSecurity", w1); // Petrov in IT => exc
         Department dep2 = new Department("CyberSecurity", w4);
+        w4.setDepartment(dep2);
+        w2.setDepartment(dep2);
 
-        //w2.setDepartment(dep2); // should be exc
-        //dep2.addWorker(w2); // should be exc
 
-        System.out.println(w1 + " | " + w2 + " | " + w3);*/
+        System.out.println(w1 + " | " + w2 + " | " + w3+ " | " + w4);
+
+        //dep1.setChief(null);
+        //System.out.println(dep2);
     }
 }

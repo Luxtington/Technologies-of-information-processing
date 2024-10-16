@@ -11,12 +11,13 @@ public class Student
     public Student(String name, List<Integer> marks)
     {
         this.name = name;
-        for (int i=0; i<marks.size(); i++)
-        {
-            if (!(isCorrectMark(marks.get(i))))
-                throw new IllegalArgumentException("Incorrect value of student's mark");
-        }
-        this.marks = marks;
+        this.setMarks(marks);
+    }
+
+    public void setMarks(List<Integer> marks)
+    {
+        this.marks = new ArrayList<>();
+        this.addMarks(marks);
     }
 
     public double getAverageMark()
@@ -43,10 +44,13 @@ public class Student
 
     public List<Integer> getMarks()
     {
-        List<Integer> copyMarks = new ArrayList<Integer>();
+        return new ArrayList<Integer>(marks);
+    }
+
+    public void addMarks(List<Integer> marks)
+    {
         for (int i=0; i < marks.size(); i++)
-            copyMarks.add(marks.get(i));
-        return copyMarks;
+            this.addMark(marks.get(i));
     }
 
     public void addMark(int mark)

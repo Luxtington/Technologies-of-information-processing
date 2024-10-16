@@ -6,7 +6,7 @@ import java.util.List;
 public class Worker
 {
     private String surname;
-    public Department department;
+    private Department department;
 
     public Worker(String surname)
     {
@@ -20,13 +20,25 @@ public class Worker
 
     public void setDepartment(Department department)
     {
+        if (this.department == department) return;
         if (this.department != null)
         {
-            if (this.department.getChief() == this)
-                throw new IllegalArgumentException("Chief of " + this.department.getTitle() + " can't work in " + department.getTitle() + " department");
+            if (this == this.department.getChief())
+            {
+                this.department.setChief(null); // chief goes in another department
+            }
+            this.department.removeWorker(this);
+        }
+        if (department != null)
+        {
+            department.addWorker(this);
         }
         this.department = department;
-        this.department.addWorker(this);
+    }
+
+    public Department getDepartment()
+    {
+        return department;
     }
 
     public String showAllWorkers()

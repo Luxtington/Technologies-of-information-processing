@@ -7,7 +7,6 @@ public class Department
 {
     private String title;
     private Worker chief;
-
     private List<Worker> workers = new ArrayList<Worker>();
 
     public Department(String title, Worker chief)
@@ -16,12 +15,19 @@ public class Department
         this.setChief(chief);
     }
 
-    public void setChief(Worker chief)
+    public void setChief(Worker newChief)
     {
-        if (chief.department == null || chief.department == this)
-            this.chief = chief;
-        else
-            throw new IllegalArgumentException("Worker can't work in different departments");
+        if (this.chief == newChief) return;
+        if (this.chief != null) // this.chief != newChief too
+        {
+            if (this.chief.getDepartment() != null)
+            {
+                this.chief.getDepartment().removeWorker(this.chief);
+                this.chief.getDepartment().setChief(null);
+                this.chief.setDepartment(null); // added
+            }
+        }
+        this.chief = newChief;
     }
 
     public Worker getChief()
@@ -47,13 +53,30 @@ public class Department
         return workers.size();
     }
 
-    public void addWorker(Worker worker)
+    public void addWorker(Worker newWorker)
     {
-        if (worker.department.getChief() == worker && worker !=chief)
+        if (workers.contains(newWorker)) return;
+
+        if (newWorker.getDepartment() != null)
         {
-            throw new IllegalArgumentException(worker.getSurname() + " can't work in " + this.title + ", cause he's the cheif of " + worker.department + " department");
+            newWorker.getDepartment().removeWorker(newWorker);
+
+            if (newWorker.getDepartment().getChief() == newWorker)
+                newWorker.getDepartment().setChief(null);
         }
-        workers.add(worker);
+        workers.add(newWorker);
+        newWorker.setDepartment(this);
+    }
+
+    public void removeWorker(Worker worker)
+    {
+        if (workers.contains(worker))
+        {
+            workers.remove(worker);
+            if (this.chief == worker)
+                this.setChief(null);
+            worker.setDepartment(null);
+        }
     }
 
     public String toString()
