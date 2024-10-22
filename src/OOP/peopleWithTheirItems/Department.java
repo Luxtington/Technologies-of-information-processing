@@ -1,4 +1,4 @@
-package OOP.peoplesWithTheirItems;
+package OOP.peopleWithTheirItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +18,12 @@ public class Department
     public void setChief(Worker newChief)
     {
         if (this.chief == newChief) return;
-        if (this.chief != null) // this.chief != newChief too
+        if (newChief == null)
         {
-            if (this.chief.getDepartment() != null)
-            {
-                this.chief.getDepartment().removeWorker(this.chief);
-                this.chief.getDepartment().setChief(null);
-                this.chief.setDepartment(null); // added
-            }
+            this.chief = null;
+            return;
         }
+        this.addWorker(newChief);
         this.chief = newChief;
     }
 
@@ -59,12 +56,12 @@ public class Department
 
         if (newWorker.getDepartment() != null)
         {
-            newWorker.getDepartment().removeWorker(newWorker);
-
             if (newWorker.getDepartment().getChief() == newWorker)
                 newWorker.getDepartment().setChief(null);
+            newWorker.getDepartment().removeWorker(newWorker);
         }
-        workers.add(newWorker);
+
+        this.workers.add(newWorker);
         newWorker.setDepartment(this);
     }
 
@@ -73,8 +70,10 @@ public class Department
         if (workers.contains(worker))
         {
             workers.remove(worker);
+
             if (this.chief == worker)
-                this.setChief(null);
+                this.chief = null;
+
             worker.setDepartment(null);
         }
     }

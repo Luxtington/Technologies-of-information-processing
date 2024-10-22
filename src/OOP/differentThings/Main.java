@@ -40,16 +40,19 @@ public class Main
         Way wayD1 = new Way(cityA, 6), wayD2 = new Way(cityC, 4), wayD3 = new Way(cityE, 2);
         Way wayE1 = new Way(cityF, 2);
         Way wayF1 = new Way(cityB, 1), wayF2 = new Way(cityE, 2);
+        //Way wayAExc = new Way(cityB, 7);
 
         List<Way> aAllAWays = new ArrayList<Way>();
+
         aAllAWays.add(wayA1);
         aAllAWays.add(wayA2);
         aAllAWays.add(wayA3);
-        //aAllAWays.add(new Way(cityF, 7)); exc
+        //aAllAWays.add(new Way(cityF, 7)); //exc - попытка добавления второго пути из одного и того же города
 
         List<Way> bAllAWays = new ArrayList<Way>();
         bAllAWays.add(wayB1);
         bAllAWays.add(wayB2);
+        //aAllAWays.add(wayAExc); // уберем А1, оставив В1, при добавлении пути А1 с другой ценой - ошибка
 
         List<Way> cAllAWays = new ArrayList<Way>();
         cAllAWays.add(wayC1);
@@ -75,9 +78,17 @@ public class Main
         allWays.add(eAllAWays);
         allWays.add(fAllAWays);
 
-        for (int i = 0; i < City.getCityNumber(); i++)
+        for (int i = 0; i < City.getCityNumber(); i++) // устанавливаем наборы путей городам
         {
             allCities.get(i).setWays(allWays.get(i));
+            System.out.println(allCities.get(i));
+        }
+
+        cityA.removeWay(wayA1);
+        System.out.println("---------");
+
+        for (int i = 0; i < City.getCityNumber(); i++) // устанавливаем наборы путей городам
+        {
             System.out.println(allCities.get(i));
         }
     }

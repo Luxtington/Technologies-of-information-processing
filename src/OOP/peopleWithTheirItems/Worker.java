@@ -1,4 +1,4 @@
-package OOP.peoplesWithTheirItems;
+package OOP.peopleWithTheirItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,16 +41,9 @@ public class Worker
         return department;
     }
 
-    public String showAllWorkers()
+    public List<Worker> showAllWorkers()
     {
-        String res = "";
-        for (int i = 0; i<department.getCurrCountWorkers(); i++)
-        {
-            List<Worker> workers = department.getListWorkers();
-            res+=workers.get(i).getSurname();
-            res+=" ";
-        }
-        return res;
+        return this.getDepartment().getListWorkers();
     }
 
     public String toString()

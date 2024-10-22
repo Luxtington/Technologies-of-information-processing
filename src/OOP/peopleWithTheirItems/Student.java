@@ -1,5 +1,6 @@
-package OOP.peoplesWithTheirItems;
+package OOP.peopleWithTheirItems;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -12,6 +13,11 @@ public class Student
     {
         this.name = name;
         this.setMarks(marks);
+    }
+
+    public Student(String name, Integer... marks)
+    {
+        this(name, Arrays.asList(marks));
     }
 
     public void setMarks(List<Integer> marks)

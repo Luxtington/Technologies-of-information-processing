@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 public class City
 {
-    public String title;
-    public List<Way> ways = new ArrayList<>();
+    private String title;
+    private List<Way> ways = new ArrayList<>();
+
     private static int cityNumber; // for comfortable print in Main
 
     {
@@ -16,7 +17,7 @@ public class City
     public City(String title, List<Way> ways)
     {
         this.title = title;
-        setWays(ways);
+        addWays(ways);
     }
 
     public City(String title)
@@ -29,34 +30,65 @@ public class City
         return cityNumber;
     }
 
+    public String getTitle()
+    {
+        return title;
+    }
+
     public void setWays(List<Way> ways)
+    {
+        this.ways = new ArrayList<>();
+        this.addWays(ways);
+    }
+
+    public List<Way> getWays()
+    {
+        return ways;
+    }
+
+    public void addWays(List<Way> ways)
     {
         for (int i=0; i < ways.size(); i++)
         {
-            this.setWay(ways.get(i));
+            this.addWay(ways.get(i));
         }
     }
 
-    public void setWay(Way way)
+    public void addWay(Way newWay)
     {
-        if (ways.size() == 0)
-            ways.add(way);
+        if (this.ways.isEmpty() && newWay.getCity().getWays().isEmpty())
+            this.ways.add(newWay);
         else
         {
-            for (int i=0; i < ways.size(); i++)
+            for (int i=0; i < ways.size(); i++) // проверка на схожие пути в этом городе
             {
-                if (ways.get(i).city == way.city)
-                    throw new IllegalArgumentException("Cannot be two  same ways to the " + way.city.title + "-city");
-
+                if (this.ways.get(i).getCity() == newWay.getCity())
+                    throw new IllegalArgumentException("Can't be two different ways to the " + newWay.getCity().title + "-city");
             }
-            ways.add(way);
+            for (int i=0; i < newWay.getCity().getWays().size(); i++) // проверка на схожие пути из другого города в этот
+            {
+                Way tmpWay = newWay.getCity().getWays().get(i);
+                if (tmpWay.getCity() == this && tmpWay.getCost() != newWay.getCost()) //без проверки на цену не сможем добавлять существующие пути, которые есть в добавленном городе, но нет в этом
+                    throw new IllegalArgumentException("Can't be two different ways to the " + newWay.getCity().title + "-city");
+            }
+            this.ways.add(newWay);
         }
-
     }
 
-    public void removeWay(Way way)
+    public void removeWay(Way deletWay)
     {
-        ways.remove(way);
+        if (this.ways.contains(deletWay))
+        {
+            this.ways.remove(deletWay);
+        }
+
+        for (int i=0; i < deletWay.getCity().getWays().size(); i++)
+        {
+            Way tmpWay = deletWay.getCity().getWays().get(i);
+
+            if (tmpWay.getCity() == this)
+                deletWay.getCity().removeWay(tmpWay);
+        }
     }
 
     public String toString()

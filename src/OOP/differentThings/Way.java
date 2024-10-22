@@ -2,8 +2,8 @@ package OOP.differentThings;
 
 public class Way
 {
-    public City city;
-    public  int cost;
+    private City city;
+    private int cost;
 
     public Way(City city, int cost)
     {
@@ -12,8 +12,18 @@ public class Way
         this.cost = cost;
     }
 
+    public City getCity()
+    {
+        return city;
+    }
+
+    public int getCost()
+    {
+        return cost;
+    }
+
     public String toString()
     {
-        return city.title + ": " + cost;
+        return city.getTitle() + ": " + cost;
     }
 }

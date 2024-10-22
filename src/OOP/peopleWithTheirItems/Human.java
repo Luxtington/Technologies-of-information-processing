@@ -1,4 +1,4 @@
-package OOP.peoplesWithTheirItems;
+package OOP.peopleWithTheirItems;
 
 public class Human
 {
