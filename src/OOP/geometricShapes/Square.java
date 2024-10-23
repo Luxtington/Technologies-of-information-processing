@@ -1,11 +1,14 @@
 package OOP.geometricShapes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Square
 {
-    public Point leftUpPoint;
+    public Point2D leftUpPoint;
     private int sideSize;
 
-    public Square(Point leftUpPoint, int sideSize)
+    public Square(Point2D leftUpPoint, int sideSize)
     {
         this.leftUpPoint = leftUpPoint;
         this.setSideSize(sideSize);
@@ -13,7 +16,7 @@ public class Square
 
     public Square(int x, int y, int sideSize)
     {
-        this(new Point(x, y), sideSize);
+        this(new Point2D(x, y), sideSize);
     }
 
     public int getSideSize()
@@ -29,13 +32,13 @@ public class Square
 
     public Polyline getPolyline()
     {
-        Point [] squarePoints = new Point[5];
+        List <Point2D> squarePoints = new ArrayList<>(5);
 
-        squarePoints[0] = leftUpPoint;
-        squarePoints[1] = new Point(leftUpPoint.x + sideSize, leftUpPoint.y);
-        squarePoints[2] = new Point(leftUpPoint.x + sideSize, leftUpPoint.y - sideSize);
-        squarePoints[3] = new Point(leftUpPoint.x, leftUpPoint.y - sideSize);
-        squarePoints[4] = leftUpPoint;
+        squarePoints.set(0, leftUpPoint);
+        squarePoints.set(1, new Point2D(leftUpPoint.x + sideSize, leftUpPoint.y));
+        squarePoints.set(2, new Point2D(leftUpPoint.x + sideSize, leftUpPoint.y - sideSize));
+        squarePoints.set(3, new Point2D(leftUpPoint.x, leftUpPoint.y - sideSize));
+        squarePoints.set(4, leftUpPoint);
 
         return new Polyline(squarePoints);
     }

@@ -1,6 +1,6 @@
 package OOP.differentThings;
 
-public class Fraction
+final class Fraction
 {
     private final int numerator;
     private final int denominator;

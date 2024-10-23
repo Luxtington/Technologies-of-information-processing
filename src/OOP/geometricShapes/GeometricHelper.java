@@ -5,7 +5,7 @@ import static java.lang.Math.sqrt;
 
 public class GeometricHelper
 {
-    public static int distanceBetweenTwoPoints(Point beginPoint, Point endPoint)
+    public static int distanceBetweenTwoPoints(Point2D beginPoint, Point2D endPoint)
     {
         return (int)sqrt(pow((endPoint.x - beginPoint.x), 2) + pow((endPoint.y - beginPoint.y), 2));
     }

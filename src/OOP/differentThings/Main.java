@@ -1,5 +1,6 @@
 package OOP.differentThings;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,15 +16,18 @@ public class Main
 
         //System.out.println(new Fraction(1, 2).plus(new Fraction(-1, 15)));
 
-        /*Gun gun1 = new Gun(7);
-        gun1.loadBullets(3);
-        for (int i=0; i<5; i++) gun1.makeShot();
-        gun1.loadBullets(8);
-        for (int i=0; i<2; i++) gun1.makeShot();
-        gun1.removeBullets();
-        gun1.makeShot();*/
+        //Gun gun1 = new Gun(7);
+        //gun1.loadBullets(3);
+        //for (int i=0; i<5; i++) gun1.makeShot();
+        //gun1.loadBullets(8);
+        //for (int i=0; i<2; i++) gun1.makeShot();
+        //gun1.removeBullets();
+        //gun1.makeShot();
+        MachineGun mg1 = new MachineGun(20, 5);
+        mg1.loadBullets(19);
+        mg1.makeShot(6);
 
-        City cityA = new City("A"), cityB = new City("B"), cityC = new City("C");
+        /*City cityA = new City("A"), cityB = new City("B"), cityC = new City("C");
         City cityD = new City("D"), cityE = new City("E"), cityF = new City("F");
 
         List<City> allCities = new ArrayList<City>();
@@ -85,11 +89,23 @@ public class Main
         }
 
         cityA.removeWay(wayA1);
+        //cityA.removeWay(cityB);
         System.out.println("---------");
 
         for (int i = 0; i < City.getCityNumber(); i++) // устанавливаем наборы путей городам
         {
             System.out.println(allCities.get(i));
         }
+        System.out.println("---------");
+
+        Way waySC1 = new Way(cityB,5), waySC2 = new Way(cityC,7), waySC3 = new Way(cityE,10);
+        SmartCity cityS = new SmartCity("S", new ArrayList<>(Arrays.asList(waySC1, waySC2, waySC3)));
+        //SmartCity cityS = new SmartCity("S");
+        //cityS.addWays(new ArrayList<>(Arrays.asList(waySC1, waySC2, waySC3)));
+        allCities.add(cityS);
+        for (int i = 0; i < City.getCityNumber(); i++)
+        {
+            System.out.println(allCities.get(i));
+        }*/
     }
 }

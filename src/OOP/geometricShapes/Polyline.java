@@ -1,47 +1,35 @@
 package OOP.geometricShapes;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Polyline
-{
-    public Point[] points;
+public class Polyline {
+    public List<Point2D> points = new ArrayList<Point2D>();
 
-    public Polyline(Point[] points)
-    {
+    public Polyline(List<Point2D> points) {
         this.points = points;
     }
 
-    public Polyline()
-    {
-        this(null);
+    public Polyline() {
+        this(new ArrayList<>());
     }
 
-    public void addPoints(Point... points)
-    {
-        Point[] newPoints = new Point[this.points.length + points.length];
-        int i, k=0;
-        for (i=0; i<this.points.length; i++)
-            newPoints[i] = this.points[i];
-
-        for (int j=i; j < newPoints.length; j++)
-            newPoints[j] = points[k++];
-
-        this.points = newPoints;
+    public void addPoints(Point2D... points) {
+        for (int i=0; i < points.length; i++)
+            this.points.add(points[i]);
     }
 
-    public int length()
-    {
+    public int length() {
         int length = 0;
-        for (int i=0; i<points.length-1; i++)
-            length += GeometricHelper.distanceBetweenTwoPoints(points[i], points[i+1]);
+        for (int i = 0; i < points.size() - 1; i++)
+            length += GeometricHelper.distanceBetweenTwoPoints(points.get(i), points.get(i+1));
 
         return length;
     }
 
-    public String toString()
-    {
+    public String toString() {
         String res = "Polyline: ";
-        res += Arrays.toString(points);
+        res += points.toString();
         return res;
     }
 }
