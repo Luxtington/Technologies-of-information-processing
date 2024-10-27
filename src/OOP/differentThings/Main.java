@@ -23,9 +23,9 @@ public class Main
         //for (int i=0; i<2; i++) gun1.makeShot();
         //gun1.removeBullets();
         //gun1.makeShot();
-        MachineGun mg1 = new MachineGun(20, 5);
-        mg1.loadBullets(19);
-        mg1.makeShot(6);
+        //MachineGun mg1 = new MachineGun(20, 5);
+        //mg1.loadBullets(19);
+        //mg1.makeShot(6);
 
         /*City cityA = new City("A"), cityB = new City("B"), cityC = new City("C");
         City cityD = new City("D"), cityE = new City("E"), cityF = new City("F");
@@ -107,5 +107,7 @@ public class Main
         {
             System.out.println(allCities.get(i));
         }*/
+
+
     }
 }

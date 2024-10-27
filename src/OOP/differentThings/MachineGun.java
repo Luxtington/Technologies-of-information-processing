@@ -21,6 +21,13 @@ public class MachineGun extends Gun{
         this(30, 30);
     }
 
+    /*private void setFiringRate(int firingRate)
+    {
+        if (firingRate < 1)
+            throw new IllegalArgumentException("Firing rate should be greater than 0");
+        this.firingRate = firingRate;
+    }*/
+
     @Override
     public void makeShot()
     {

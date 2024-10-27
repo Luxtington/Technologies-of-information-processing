@@ -46,7 +46,7 @@ public class City {
     }
 
     public void addWay(Way newWay) {
-        System.out.println("2 - father");
+        //System.out.println("2 - father");
         if (newWay == null) return;
         if (this.ways.isEmpty() && newWay.getCity().getWays().isEmpty())
             this.ways.add(newWay);

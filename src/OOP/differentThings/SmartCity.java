@@ -17,8 +17,13 @@ public class SmartCity extends City {
     @Override
     public void addWay(Way newWay)
     {
-        System.out.println("1 - child");
+        //System.out.println("1 - child");
         super.addWay(newWay);
+        for (int i=0; i < newWay.getCity().getWays().size(); i++)
+        {
+            if (newWay.getCity().getWays().get(i).getCity() == this)
+                return;
+        }
         newWay.getCity().addWay(new Way(this, newWay.getCost()));
     }
 
