@@ -1,6 +1,10 @@
 package oop.geometricShapes;
 
-public class Triangle extends Figure{
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Triangle extends Figure implements HasPolylineImpl{
 
     private Point2D secondPoint;
     private Point2D thirdPoint;
@@ -17,11 +21,17 @@ public class Triangle extends Figure{
     }
 
     @Override
-    public double square(){
+    public double area(){
         return 0.5 * Math.abs((secondPoint.x - super.beginPoint.x) * (thirdPoint.y - super.beginPoint.y) - (thirdPoint.x - super.beginPoint.x) * (secondPoint.y - super.beginPoint.y));
     }
 
+    @Override
+    public Polyline getPolyline(){
 
+        List<Point2D> trianglePoints = new ArrayList<>(Arrays.asList(super.beginPoint, secondPoint, thirdPoint));
+
+        return new Polyline(trianglePoints);
+    }
 
     private boolean checkTrianglePoints(Point2D firstPoint, Point2D secondPoint, Point2D thirdPoint){
         int dist1 = GeometricHelper.distanceBetweenTwoPoints(firstPoint, secondPoint);

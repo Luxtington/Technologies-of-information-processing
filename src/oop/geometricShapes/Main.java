@@ -1,5 +1,7 @@
 package oop.geometricShapes;
 
+import oop.differentThings.numbers.Summator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,14 +26,30 @@ public class Main
         //System.out.println(p1);
         //System.out.println();
 
-        Figure f1 = new Rectangle(new Point2D(2,4), 5,7);
-        Figure f2 = new Square(new Point2D(5,6), 8);
-        Figure f3 = new Circle(new Point2D(4,5), 3);
-        Figure f4 = new Triangle(new Point2D(2, -3), new Point2D(1,1), new Point2D(-6, 5));
+        /*Rectangle f1 = new Rectangle(new Point2D(2,4), 5,7);
+        Rectangle f2 = new Rectangle(new Point2D(5,6), 8, 8);
+        Circle f3 = new Circle(new Point2D(4,5), 3);
+        Triangle f4 = new Triangle(new Point2D(2, -3), new Point2D(1,1), new Point2D(-6, 5));
 
         List<Figure> figures = new ArrayList<>(Arrays.asList(f1, f2, f3, f4));
 
         for (int i=0; i < figures.size(); i++)
-            System.out.println("Square of figure = " + figures.get(i).square());
+            System.out.println("Square of figure = " + figures.get(i).area());
+
+        Figure [] figures2 = {f1, f2, f3, f4};
+        System.out.println(Summator.summAreas(figures2));*/
+
+        Rectangle r1 = new Rectangle(new Point2D(3,4), 5,5);
+        System.out.println(r1.getPolyline().length());
+
+        Triangle t1 = new Triangle(new Point2D(3,4), new Point2D(1,0), new Point2D(0, 3));
+        System.out.println(t1.getPolyline());
+
+        System.out.println(GeometricHelper.joinPolylines(t1, r1));
+
+        /*hasLengthImpl [] objs = {new Line(new Point2D(1,2), new Point2D(3,4)),
+            new Polyline(new ArrayList<>(Arrays.asList(new Point2D(5,6), new Point2D(9,8))))};
+
+        System.out.println(Summator.summLength(objs));*/
     }
 }

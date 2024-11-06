@@ -1,6 +1,9 @@
 package oop.geometricShapes;
 
-public class Rectangle extends Figure{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Rectangle extends Figure implements HasPolylineImpl{
 
     private int firstSide;
     private int secondSide;
@@ -34,9 +37,27 @@ public class Rectangle extends Figure{
         setSecondSide(secondSide);
     }
 
+    public boolean isSquare(){
+        return firstSide == secondSide;
+    }
+
     @Override
-    public double square(){
+    public double area(){
         return firstSide * secondSide;
+    }
+
+    @Override
+    public Polyline getPolyline() {
+
+        List<Point2D> squarePoints = new ArrayList<>(4);
+
+        squarePoints.add(super.beginPoint);
+        squarePoints.add(new Point2D(super.beginPoint.x + firstSide, super.beginPoint.y));
+        squarePoints.add(new Point2D(super.beginPoint.x + firstSide, super.beginPoint.y - secondSide));
+        squarePoints.add(new Point2D(super.beginPoint.x, super.beginPoint.y - secondSide));
+
+        //return new Polyline(squarePoints);
+        return new ClosedLine(squarePoints);
     }
 
     public String toString() {

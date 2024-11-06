@@ -1,33 +1,28 @@
 package oop.differentThings.animals;
 
-public class Cat
-{
+public class Cat implements Meowable{
     public String name;
 
-    public Cat(String name)
-    {
+    public Cat(String name) {
         this.name = name;
     }
 
-    public String makeMeow(int times)
-    {
+    public void makeMeow(int times) {
         String res = name + ": ";
-        for (int i=0; i<times; i++)
-        {
-            res+="meow";
-            if (i == times-1) res += "!";
+        for (int i = 0; i < times; i++) {
+            res += "meow";
+            if (i == times - 1) res += "!";
             else res += ", ";
         }
-        return res;
+        System.out.println(res);
     }
 
-    public String makeMeow()
-    {
-        return makeMeow(1);
+    @Override
+    public void makeMeow() {
+        makeMeow(1);
     }
 
-    public String toString()
-    {
+    public String toString() {
         return "Cat: " + name;
     }
 }

@@ -16,7 +16,7 @@ public class Circle extends Figure{
     }
 
     @Override
-    public double square(){
+    public double area(){
         return Math.PI * radius * radius;
     }
 }

@@ -8,5 +8,5 @@ public abstract class Figure {
         this.beginPoint = beginPoint;
     }
 
-    public abstract double square();
+    public abstract double area();
 }

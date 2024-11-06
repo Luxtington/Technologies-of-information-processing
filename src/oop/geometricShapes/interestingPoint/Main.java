@@ -5,8 +5,9 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Attribute a1 = new Size(10), a2 = new Color("red"), a3 = new Y(10), a4 = new Time(11, 35);
-        PointUniversal p1 = new PointUniversal(5, new ArrayList<>(Arrays.asList(a1, a2, a4)));
+        Attribute a1 = new Size(10), a2 = new Color("red"), a3 = new Time(11, 35);
+        int [] coordinates1 = {5, 0, 0};
+        PointUniversal p1 = new PointUniversal(coordinates1, new ArrayList<>(Arrays.asList(a1, a2)));
 
         Attribute a5 = new Size(10), a6 = new Color("pink");
 

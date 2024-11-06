@@ -1,6 +1,6 @@
 package oop.differentThings.numbers;
 
-public final class Fraction extends Number {
+public final class Fraction extends Number implements Summable {
     private final int numerator;
     private final int denominator;
 
@@ -45,22 +45,22 @@ public final class Fraction extends Number {
 
     @Override
     public int intValue() {
-        return 0;
+        return (int)numerator/denominator;
     }
 
     @Override
     public long longValue() {
-        return 0;
+        return (long)numerator/denominator;
     }
 
     @Override
     public float floatValue() {
-        return 0;
+        return (float)numerator/denominator;
     }
 
     @Override
     public double doubleValue() {
-        return 0;
+        return (double)numerator/denominator;
     }
 
     public String toString() {

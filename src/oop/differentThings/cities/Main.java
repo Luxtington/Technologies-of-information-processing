@@ -10,7 +10,7 @@ public class Main {
         /*House h1 = new House(2);
         System.out.println(h1);*/
 
-        City cityA = new City("A"), cityB = new City("B"), cityC = new City("C");
+        /*City cityA = new City("A"), cityB = new City("B"), cityC = new City("C");
         City cityD = new City("D"), cityE = new City("E"), cityF = new City("F");
 
         List<City> allCities = new ArrayList<City>();
@@ -89,6 +89,30 @@ public class Main {
         for (int i = 0; i < City.getCityNumber(); i++)
         {
             System.out.println(allCities.get(i));
-        }
+        }*/
+
+        City cityA = new SmartCity("A"), cityB = new City("B"), cityC = new City("C");
+        City cityD = new SmartCity("D"), cityE = new City("E");
+
+        List<City> allCities = new ArrayList<City>(Arrays.asList(cityA, cityB, cityC, cityD, cityE));
+
+        Way wayA1 = new Way(cityB, 5), wayA2 = new Way(cityC, 6);
+        Way wayB1 = new Way(cityC, 9);
+        //Way c isn't necessary because of a smart city A
+        Way wayD1 = new Way(cityB, 1), wayD2 = new Way(cityE, 4);
+        Way wayE1 = new Way(cityC, 2);
+
+        List<Way> aAllAWays = new ArrayList<Way>(Arrays.asList(wayA1, wayA2));
+        List<Way> bAllAWays = new ArrayList<Way>(Arrays.asList(wayB1));
+        List<Way> dAllAWays = new ArrayList<Way>(Arrays.asList(wayD1, wayD2));
+        List<Way> eAllAWays = new ArrayList<Way>(Arrays.asList(wayE1));
+
+        cityA.addWays(aAllAWays);
+        cityB.addWays(bAllAWays);
+        cityD.addWays(dAllAWays);
+        cityE.addWays(eAllAWays);
+
+        for (int i=0; i < allCities.size(); i++)
+            System.out.println(allCities.get(i));
     }
 }

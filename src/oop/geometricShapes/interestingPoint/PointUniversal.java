@@ -1,15 +1,16 @@
 package oop.geometricShapes.interestingPoint;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PointUniversal {
 
-    public int x;
+    public int [] coordinates = new int[3];
     private List<Attribute> attributes = new ArrayList<>();
 
-    public PointUniversal(int x, List<Attribute> attributes){
-        this.x = x;
+    public PointUniversal(int [] coordinates, List<Attribute> attributes){
+        this.coordinates = coordinates;
         this.attributes = attributes;
     }
 
@@ -34,7 +35,7 @@ public class PointUniversal {
     }
 
     public String toString(){
-        return "Point in x = " + x + ", with attributes: " + attributes.toString();
+        return "Point in coordinates: " + Arrays.toString(coordinates) + ", with attributes: " + attributes.toString();
     }
 
 }
