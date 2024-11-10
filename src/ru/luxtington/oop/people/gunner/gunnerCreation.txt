@@ -1,0 +1,12 @@
+        Gun gun1 = new Gun(7);
+        gun1.loadBullets(3);
+
+        MachineGun mg1 = new MachineGun(20, 5);
+
+        Shooter s1 = new Shooter("Alex");
+
+        s1.weapon = gun1;
+        s1.shoot();
+
+        s1.weapon = mg1;
+        s1.shoot();

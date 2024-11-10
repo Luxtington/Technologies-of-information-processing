@@ -1,0 +1,2 @@
+        Time t1 = new Time(86399);
+        System.out.println(t1);
