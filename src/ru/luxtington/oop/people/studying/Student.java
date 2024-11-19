@@ -3,9 +3,10 @@ package ru.luxtington.oop.people.studying;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Student {
-    private final String name;
+    final String name;
     private List<Integer> marks;
     private Rule rule;
 
@@ -68,10 +69,23 @@ public class Student {
     public void removeMark(int mark){
         if (!(marks.contains(mark)))
             throw new IllegalArgumentException("There's no such mark in student's marks");
+
         for (int i=0; i < marks.size(); i++)
             if (marks.get(i) == mark)
                 marks.remove(i);
-        //marks.remove(mark);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(name, student.name) && getAverageMark() == student.getAverageMark();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, getAverageMark());
     }
 
     public String toString() {

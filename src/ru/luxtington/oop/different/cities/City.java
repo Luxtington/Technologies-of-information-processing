@@ -1,10 +1,13 @@
 package ru.luxtington.oop.different.cities;
 
+import ru.luxtington.oop.geometry.points.Point2D;
+
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class City {
-    private String title;
+    String title;
     private List<Way> ways = new ArrayList<>();
 
     private static int cityNumber; // for comfortable print in Main
@@ -48,22 +51,20 @@ public class City {
     public void addWay(Way newWay) {
         //System.out.println("2 - father");
         if (newWay == null) return;
-        if (this.ways.isEmpty() && newWay.getCity().getWays().isEmpty())
+        if (this.ways.isEmpty() && newWay.city.getWays().isEmpty())
             this.ways.add(newWay);
-        else
-        {
+        else {
             for (int i = 0; i < ways.size(); i++) // проверка на схожие пути в этом городе
             {
-                if (this.ways.get(i).getCity() == newWay.getCity())
-                {
+                if (this.ways.get(i).city == newWay.city) {
                     this.ways.get(i).setCost(newWay.getCost());
                     return;
                 }
             }
-            for (int i = 0; i < newWay.getCity().getWays().size(); i++) // проверка на схожие пути из другого города в этот
+            for (int i = 0; i < newWay.city.getWays().size(); i++) // проверка на схожие пути из другого города в этот
             {
-                Way tmpWay = newWay.getCity().getWays().get(i); // текущий путь из города, куда добавляем, в этот
-                if (tmpWay.getCity() == this && tmpWay.getCost() != newWay.getCost()) //без проверки на цену не сможем добавлять существующие пути, которые есть в добавленном городе, но нет в этом
+                Way tmpWay = newWay.city.getWays().get(i); // текущий путь из города, куда добавляем, в этот
+                if (tmpWay.city == this && tmpWay.getCost() != newWay.getCost()) //без проверки на цену не сможем добавлять существующие пути, которые есть в добавленном городе, но нет в этом
                     tmpWay.setCost(newWay.getCost());
             }
             this.ways.add(newWay);
@@ -75,27 +76,45 @@ public class City {
             this.ways.remove(deletWay);
         }
 
-        for (int i = 0; i < deletWay.getCity().getWays().size(); i++) {
-            Way tmpWay = deletWay.getCity().getWays().get(i); // если будет инкапсуляция city - GG
+        for (int i = 0; i < deletWay.city.getWays().size(); i++) {
+            Way tmpWay = deletWay.city.getWays().get(i); // если будет инкапсуляция city - GG
 
-            if (tmpWay.getCity() == this)
-                deletWay.getCity().removeWay(tmpWay);
+            if (tmpWay.city == this)
+                deletWay.city.removeWay(tmpWay);
         }
     }
 
-    public void removeWay(City deletedCity)
-    {
-        for (int i=0; i < ways.size(); i++)
-        {
-            if (ways.get(i).getCity() == deletedCity)
+    public void removeWay(City deletedCity) {
+        for (int i = 0; i < ways.size(); i++) {
+            if (ways.get(i).city == deletedCity)
                 ways.remove(ways.get(i));
         }
+    }
 
-        /*for (int i=0; i < deletedCity.getWays().size(); i++)
-        {
-            if (deletedCity.getWays().get(i).getCity() == this)
-                deletedCity.getWays().remove(deletedCity.getWays().get(i));
-        }*/ //никак не реализовать из-за хорошего геттера
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City city)) return false;
+
+        if (ways.isEmpty() && city.ways.isEmpty())
+            return false;
+
+        if (ways.size() == city.ways.size()){
+            for (int i=0; i < ways.size(); i++){
+                if (!((city.ways.contains(ways.get(i))) && (ways.contains(city.ways.get(i)))))
+                    return false;
+            }
+            return true;
+        }
+        else
+            return false;
+
+        //return Objects.equals(ways, city.ways);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(ways); // = ways.hashCode();
     }
 
     public String toString() {

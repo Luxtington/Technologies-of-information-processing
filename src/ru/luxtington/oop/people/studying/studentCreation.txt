@@ -10,3 +10,16 @@
 
         s1.addMark(1);
 
+
+        // with rules !!!
+        Student s1 = new Student("Petya", new Rule2To5(), new ArrayList<>(Arrays.asList(2,3,3)));
+        Student s2 = new Student("Vasya", new Rule2To5(), new ArrayList<>(Arrays.asList(5,5,2)));
+        Student s3 = new Student("Dima", new Rule10To13(), new ArrayList<>(Arrays.asList(12,12,12)));
+
+        List <Student> students = new ArrayList<>(Arrays.asList(s1, s2, s3));
+
+        Tester.setMarkToStudents(students, 11);
+
+        for (int i=0; i < students.size(); i++)
+            System.out.println(students.get(i).getMarks());
+

@@ -1,27 +1,32 @@
-Worker w1 = new Worker("Petrov");
+        Worker w1 = new Worker("Petrov");
         Worker w2 = new Worker("Kozlov");
         Worker w3 = new Worker("Sidorov");
         Worker w4 = new Worker("Volkov");
 
+        System.out.println("-----Init state of 4 workers");
+        System.out.println(w1 + " | " + w2 + " | " + w3+ " | " + w4);
+
         Department dep1 = new Department("IT", w2);
 
         w1.setDepartment(dep1);
-        w2.setDepartment(dep1);
         w3.setDepartment(dep1);
 
-        //Department dep2 = new Department("CyberSecurity", w1); // Petrov in IT => exc
+        System.out.println("-----Petrov,Kozlov, Sidorov go in IT, Kozlov - chief ");
+        System.out.println(w1 + " | " + w2 + " | " + w3+ " | " + w4);
 
-        Department dep2 = new Department("CyberSecurity", w4);
+
+        Department dep2 = new Department("CyberSecurity", w1);
         w4.setDepartment(dep2);
-        w2.setDepartment(dep2);
+        System.out.println("-----Petrov - chief of CyberSecurity, Volkov go in CyberSecurity");
+        System.out.println(w1 + " | " + w2 + " | " + w3+ " | " + w4);
 
-        dep2.removeWorker(w4);
-        dep1.removeWorker(w1);
+        dep1.removeWorker(w3);
+        dep2.setChief(w2);
+        System.out.println("-----Kozlov became the chief of CyberSecurity, Sidorov go away from IT");
+        System.out.println(w1 + " | " + w2 + " | " + w3+ " | " + w4);
 
-        dep1.setChief(w4);
-        dep2.setChief(w4);
-        dep2.setChief(w1);
-
+        dep2.setChief(null);
+        System.out.println("-----Kozlov go away from CyberSecurity");
         System.out.println(w1 + " | " + w2 + " | " + w3+ " | " + w4);
 
         // тесты:

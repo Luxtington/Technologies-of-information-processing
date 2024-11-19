@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Department
 {
-    private String title;
-    private Worker chief;
-    private List<Worker> workers = new ArrayList<Worker>();
+    String title;
+    Worker chief;
+    List<Worker> workers = new ArrayList<Worker>();
 
     public Department(String title, Worker chief)
     {
@@ -39,10 +39,7 @@ public class Department
 
     public List<Worker> getListWorkers()
     {
-        List<Worker> newWorkers = new ArrayList<Worker>();
-        for (int i=0; i < workers.size(); i++)
-            newWorkers.set(i, workers.get(i));
-        return newWorkers;
+        return new ArrayList<>(workers);
     }
 
     public int getCurrCountWorkers()
@@ -54,11 +51,11 @@ public class Department
     {
         if (workers.contains(newWorker)) return;
 
-        if (newWorker.getDepartment() != null)
+        if (newWorker.department != null)
         {
-            if (newWorker.getDepartment().getChief() == newWorker)
-                newWorker.getDepartment().setChief(null);
-            newWorker.getDepartment().removeWorker(newWorker);
+            if (newWorker.department.chief == newWorker)
+                newWorker.department.setChief(null);
+            newWorker.department.removeWorker(newWorker);
         }
 
         this.workers.add(newWorker);
@@ -82,6 +79,6 @@ public class Department
     {
         if (chief == null)
             return title + " department without chief";
-        return title + " department, his chief " + chief.getSurname();
+        return title + " department, his chief " + chief.surname;
     }
 }

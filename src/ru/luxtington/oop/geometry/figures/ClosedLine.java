@@ -3,6 +3,7 @@ package ru.luxtington.oop.geometry.figures;
 import ru.luxtington.oop.geometry.GeometricHelper;
 import ru.luxtington.oop.geometry.points.Point2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClosedLine extends Polyline {
@@ -18,13 +19,21 @@ public class ClosedLine extends Polyline {
         return super.length() + GeometricHelper.distanceBetweenTwoPoints(super.points.get(0), super.points.get(super.points.size() - 1));
     }
 
-    /*@Override
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString()
     {
         String res = "Closed line: ";
-        List <Point> resPoints = new ArrayList<>(super.points);
-        resPoints.add(super.points.get(0));
-        res += resPoints.toString();
+        res += super.points.toString();
         return res;
-    }*/
+    }
 }

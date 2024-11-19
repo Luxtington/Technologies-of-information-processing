@@ -2,11 +2,15 @@ package ru.luxtington.oop.geometry.figures;
 
 import ru.luxtington.oop.geometry.GeometricHelper;
 import ru.luxtington.oop.geometry.points.Point2D;
+import ru.luxtington.oop.geometry.points.Point2DComparator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class Line implements Lengthable, Polylineable {
+
     private Point2D beginPoint;
     private Point2D endPoint;
 
@@ -44,6 +48,21 @@ public class Line implements Lengthable, Polylineable {
     public Polyline getPolyline(){
 
         return new Polyline(new ArrayList<>(Arrays.asList(beginPoint, endPoint)));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return (Objects.equals(beginPoint, line.beginPoint) && Objects.equals(endPoint, line.endPoint)) || (Objects.equals(beginPoint, line.endPoint) && Objects.equals(endPoint, line.beginPoint));
+    }
+
+    @Override
+    public int hashCode() {
+        List<Point2D> pts = new ArrayList<>(Arrays.asList(beginPoint, endPoint));
+        pts.sort(new Point2DComparator());
+        return Objects.hash(pts.get(0), pts.get(1));
     }
 
     public String toString() {

@@ -1,11 +1,12 @@
 package ru.luxtington.oop.people.departments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Worker
 {
-    private String surname;
-    private Department department;
+    String surname;
+    Department department;
 
     public Worker(String surname)
     {
@@ -22,7 +23,7 @@ public class Worker
         if (this.department == department) return;
         if (this.department != null)
         {
-            if (this == this.department.getChief())
+            if (this == this.department.chief)
             {
                 this.department.setChief(null); // chief goes in another department
             }
@@ -42,15 +43,15 @@ public class Worker
 
     public List<Worker> showAllWorkers()
     {
-        return this.getDepartment().getListWorkers();
+        return new ArrayList<>(this.department.workers);
     }
 
     public String toString()
     {
         if (department == null)
             return surname + " doesn't work in someone department";
-        if (department.getChief() == this)
-            return surname + " is the chief of " + department.getTitle() + " department";
+        if (department.chief == this)
+            return surname + " is the chief of " + department.title + " department";
         return surname + " works in " + department;
     }
 }

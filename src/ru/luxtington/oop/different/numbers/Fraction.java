@@ -1,6 +1,8 @@
 package ru.luxtington.oop.different.numbers;
 
-public final class Fraction extends Number {
+import java.util.Objects;
+
+public final class Fraction extends Number implements Cloneable{
     private final int numerator;
     private final int denominator;
 
@@ -61,6 +63,29 @@ public final class Fraction extends Number {
     @Override
     public double doubleValue() {
         return (double)numerator/denominator;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fraction fraction = (Fraction) o;
+        return numerator == fraction.numerator && denominator == fraction.denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numerator, denominator);
+    }
+
+    @Override
+    public Fraction clone(){
+        try{
+            return (Fraction)super.clone();
+        }
+        catch (CloneNotSupportedException e){
+            throw new RuntimeException();
+        }
     }
 
     public String toString() {

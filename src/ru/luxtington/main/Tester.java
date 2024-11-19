@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.*;
+import static java.lang.Integer.*;
 
 public class Tester {
     public static double summ(Number...numbers){
@@ -71,7 +72,7 @@ public class Tester {
     }
 
     public static double toPower(String x, String y){
-        return pow(Integer.parseInt(x), Integer.parseInt(y));
+        return pow(parseInt(x), parseInt(y));
     }
 
     public static void setMarkToStudents(List <Student> students, int mark){

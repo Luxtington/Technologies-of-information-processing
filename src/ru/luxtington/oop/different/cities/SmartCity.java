@@ -19,13 +19,21 @@ public class SmartCity extends City {
     {
         //System.out.println("1 - child");
         super.addWay(newWay);
-        for (int i=0; i < newWay.getCity().getWays().size(); i++)
+        for (int i=0; i < newWay.city.getWays().size(); i++)
         {
-            if (newWay.getCity().getWays().get(i).getCity() == this)
+            if (newWay.city.getWays().get(i).city == this)
                 return;
         }
-        newWay.getCity().addWay(new Way(this, newWay.getCost()));
+        newWay.city.addWay(new Way(this, newWay.getCost()));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
