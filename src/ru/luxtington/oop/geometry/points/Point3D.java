@@ -25,15 +25,6 @@ public class Point3D extends Point2D {
         return Objects.hash(super.hashCode(), z);
     }
 
-    @Override
-    public Point3D clone(){
-        try{
-            return (Point3D)super.clone();
-        }
-        catch (CloneNotSupportedException e){
-            throw new RuntimeException();
-        }
-    }
 
     @Override
     public String toString()

@@ -84,7 +84,7 @@ public final class Fraction extends Number implements Cloneable{
             return (Fraction)super.clone();
         }
         catch (CloneNotSupportedException e){
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 

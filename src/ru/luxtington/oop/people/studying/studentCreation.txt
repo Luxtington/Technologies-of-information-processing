@@ -23,3 +23,11 @@
         for (int i=0; i < students.size(); i++)
             System.out.println(students.get(i).getMarks());
 
+
+
+        Student s1 = new Student("Vasya", new Rule2To5(), new ArrayList<>(Arrays.asList(4,5,3)));
+                Student s2 = new Student("Petya", new Rule2To5(), new ArrayList<>(Arrays.asList(4,5,5)));
+                Student s3 = new Student("Vasya", new Rule2To5(), new ArrayList<>(Arrays.asList(4,4,4)));
+                System.out.println(s1.equals(s2));
+                System.out.println(s1.equals(s3));
+

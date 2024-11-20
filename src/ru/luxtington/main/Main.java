@@ -18,38 +18,23 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 
-        /*Fraction f1 = new Fraction(3,4);
-        Fraction f2 = new Fraction(3,4);
-        Fraction f3 = f2.clone();
-        System.out.println(f1.equals(f2));
-        System.out.println(f3 == f2);
+        Fraction f1 = new Fraction(3,4);
+        Fraction f2 = f1.clone();
+        //System.out.println(f2 == f1);
+
+        Point3D p1 = new Point3D(1,2,3);
+        Point3D p2 = (Point3D) p1.clone();
+        System.out.println(p2 == p1);
+        //System.out.println(p2);
+
+        Line l1 = new Line(new Point2D(1,2), new Point2D(3,4));
+        Line l2 = l1.clone();
+
+        l2.setBeginPoint(new Point2D(99, 99));
+        System.out.println(l1 + " | " + l2);
 
 
-        Point3D p111 = new Point3D(4,5,6);
-        Point3D p222 = new Point3D(4,5,6);
-        System.out.println(p111.equals(p222));
-
-        Line l1 = new Line(new Point2D(1,2), new Point2D(1,4));
-        Line l2 = new Line(new Point2D(7,8), new Point2D(1,2));
-        System.out.println(l1.equals(l2));
-
-        System.out.println(l1.hashCode());
-        System.out.println(l2.hashCode());
-
-        Point2D p1 = new Point2D(1,2), p2 = new Point2D(3,4), p3 = new Point2D(5,6);
-
-        Polyline pl1 = new Polyline(new ArrayList<>(Arrays.asList(p1, p2, p3)));
-        Polyline pl2 = new Polyline(new ArrayList<>(Arrays.asList(p1, p3, p2, p1)));
-        Polyline pl3 = new Polyline(new ArrayList<>(Arrays.asList(p3, p2, p1)));
-        ClosedLine cl1 = new ClosedLine(new ArrayList<>(Arrays.asList(p1, p2, p3)));
-
-        System.out.println(pl1.equals(pl2) + "| hash1: " + pl1.hashCode() + ", hash2: " + pl2.hashCode());
-        System.out.println(pl1.equals(pl3) + "| hash1: " + pl1.hashCode() + ", hash2: " + pl3.hashCode());
-        System.out.println(pl2.equals(cl1) + "| hash1: " + pl2.hashCode() + ", hash2: " + cl1.hashCode());
-        System.out.println(cl1.equals(pl2) + "| hash1: " + cl1.hashCode() + ", hash2: " + pl2.hashCode());
-
-
-        City cityB = new City("B"), cityC = new City("C"), cityD = new City("D"), cityE = new City("E");
+        /*City cityB = new City("B"), cityC = new City("C"), cityD = new City("D"), cityE = new City("E");
 
         City cityF = new City("F", new ArrayList<>(Arrays.asList(new Way(cityB,1), new Way(cityC, 2), new Way(cityD,3))));
         SmartCity cityA = new SmartCity("A", new ArrayList<>(Arrays.asList(new Way(cityB,2), new Way(cityC, 1), new Way(cityD,3))));
@@ -65,14 +50,15 @@ public class Main {
         City AA = new City("AA");
         City BB = new City("BB");
         City CC = new City("CC");
+        City DD = new City("DD");
+
         AA.addWay(new Way(CC,2));
+        AA.addWay(new Way(DD,4));
+
+        BB.addWay(new Way(DD,5));
         BB.addWay(new Way(CC,3));
         System.out.println("ST test = " + AA.equals(BB));
+        System.out.println(AA.hashCode() == BB.hashCode());*/
 
-        Student s1 = new Student("Vasya", new Rule2To5(), new ArrayList<>(Arrays.asList(4,5,3)));
-        Student s2 = new Student("Petya", new Rule2To5(), new ArrayList<>(Arrays.asList(4,5,5)));
-        Student s3 = new Student("Vasya", new Rule2To5(), new ArrayList<>(Arrays.asList(4,4,4)));
-        System.out.println(s1.equals(s2));
-        System.out.println(s1.equals(s3));*/
     }
 }

@@ -39,3 +39,19 @@
             new Polyline(new ArrayList<>(Arrays.asList(new Point2D(5,6), new Point2D(9,8))))};
 
         System.out.println(Summator.summLength(objs));*/
+
+
+
+
+
+                Point2D p1 = new Point2D(1,2), p2 = new Point2D(3,4), p3 = new Point2D(5,6);
+
+                Polyline pl1 = new Polyline(new ArrayList<>(Arrays.asList(p1, p2, p3)));
+                Polyline pl2 = new Polyline(new ArrayList<>(Arrays.asList(p1, p3, p2, p1)));
+                Polyline pl3 = new Polyline(new ArrayList<>(Arrays.asList(p3, p2, p1)));
+                ClosedLine cl1 = new ClosedLine(new ArrayList<>(Arrays.asList(p1, p2, p3)));
+
+                System.out.println(pl1.equals(pl2) + "| hash1: " + pl1.hashCode() + ", hash2: " + pl2.hashCode());
+                System.out.println(pl1.equals(pl3) + "| hash1: " + pl1.hashCode() + ", hash2: " + pl3.hashCode());
+                System.out.println(pl2.equals(cl1) + "| hash1: " + pl2.hashCode() + ", hash2: " + cl1.hashCode());
+                System.out.println(cl1.equals(pl2) + "| hash1: " + cl1.hashCode() + ", hash2: " + pl2.hashCode());

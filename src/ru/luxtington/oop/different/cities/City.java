@@ -114,7 +114,15 @@ public class City {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(ways); // = ways.hashCode();
+
+        int hashCodes = 0;
+
+        for (int i=0; i < ways.size(); i++){
+            hashCodes += ways.get(i).hashCode();
+        }
+
+        return hashCodes;
+        //return Objects.hashCode(ways);  <=> ways.hashCode();
     }
 
     public String toString() {

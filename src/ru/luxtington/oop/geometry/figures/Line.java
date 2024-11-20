@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Line implements Lengthable, Polylineable {
+public class Line implements Lengthable, Polylineable, Cloneable {
 
     private Point2D beginPoint;
     private Point2D endPoint;
@@ -63,6 +63,18 @@ public class Line implements Lengthable, Polylineable {
         List<Point2D> pts = new ArrayList<>(Arrays.asList(beginPoint, endPoint));
         pts.sort(new Point2DComparator());
         return Objects.hash(pts.get(0), pts.get(1));
+    }
+
+    @Override
+    public Line clone(){
+        try{
+            Line clonedLine = (Line)super.clone();
+            clonedLine.beginPoint = new Point2D(beginPoint.x, beginPoint.y);
+            clonedLine.endPoint = new Point2D(endPoint.x, endPoint.y);
+            return clonedLine;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String toString() {
