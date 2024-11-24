@@ -99,17 +99,17 @@ public class City {
         if (ways.isEmpty() && city.ways.isEmpty())
             return false;
 
-        if (ways.size() == city.ways.size()){
-            for (int i=0; i < ways.size(); i++){
+        if (ways.size() != city.ways.size())
+            return false;
+
+        else {
+            for (int i = 0; i < ways.size(); i++) {
                 if (!((city.ways.contains(ways.get(i))) && (ways.contains(city.ways.get(i)))))
                     return false;
             }
             return true;
         }
-        else
-            return false;
-
-        //return Objects.equals(ways, city.ways);
+        //return Objects.equals(ways, city.ways); // bad
     }
 
     @Override

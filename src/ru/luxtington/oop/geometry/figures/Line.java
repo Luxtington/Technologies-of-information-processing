@@ -69,8 +69,8 @@ public class Line implements Lengthable, Polylineable, Cloneable {
     public Line clone(){
         try{
             Line clonedLine = (Line)super.clone();
-            clonedLine.beginPoint = new Point2D(beginPoint.x, beginPoint.y);
-            clonedLine.endPoint = new Point2D(endPoint.x, endPoint.y);
+            clonedLine.beginPoint  = this.beginPoint.clone(); //= new Point2D(beginPoint.x, beginPoint.y);
+            clonedLine.endPoint = this.endPoint.clone();  //= new Point2D(endPoint.x, endPoint.y);
             return clonedLine;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);

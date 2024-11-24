@@ -105,3 +105,31 @@
 
         for (int i=0; i < allCities.size(); i++)
             System.out.println(allCities.get(i));
+
+
+        --------------------------------------------(equals() in City)
+                /*City cityB = new City("B"), cityC = new City("C"), cityD = new City("D"), cityE = new City("E");
+
+                City cityF = new City("F", new ArrayList<>(Arrays.asList(new Way(cityB,1), new Way(cityC, 2), new Way(cityD,3))));
+                SmartCity cityA = new SmartCity("A", new ArrayList<>(Arrays.asList(new Way(cityB,2), new Way(cityC, 1), new Way(cityD,3))));
+                System.out.println(cityE.equals(cityD) + "| hash1: " + cityE.hashCode() + ", hash2: " + cityD.hashCode());
+                System.out.println(cityF.equals(cityA) + "| hash1: " + cityF.hashCode() + ", hash2: " + cityA.hashCode());
+                System.out.println(cityA.equals(cityF) + "| hash1: " + cityA.hashCode() + ", hash2: " + cityF.hashCode());
+                System.out.println(cityB.equals(cityC) + "| hash1: " + cityB.hashCode() + ", hash2: " + cityC.hashCode());
+
+                Way test1 = new Way(new City("BB"), 1), test2 = new Way(new City("BB"), 1);
+                System.out.println("Test of ways's equals: " + test1.equals(test2));
+
+
+                City AA = new City("AA");
+                City BB = new City("BB");
+                City CC = new City("CC");
+                City DD = new City("DD");
+
+                AA.addWay(new Way(CC,2));
+                AA.addWay(new Way(DD,4));
+
+                BB.addWay(new Way(DD,5));
+                BB.addWay(new Way(CC,3));
+                System.out.println("ST test = " + AA.equals(BB));
+                System.out.println(AA.hashCode() == BB.hashCode());*/
