@@ -1,5 +1,5 @@
 package ru.luxtington.oop.patterns.behaviour;
 
 public interface Hittable {
-    void execute();
+    void execute(Karatist karatist);
 }

@@ -2,14 +2,17 @@ package ru.luxtington.oop.patterns.behaviour;
 
 public class HitByHand implements Hittable{
 
-    Karatist karatist;
+    private static final HitByHand kick = new HitByHand();
 
-    public HitByHand(Karatist karatist){
-        this.karatist = karatist;
+    private HitByHand() {
+    }
+
+    public static HitByHand createHitByHand(){
+        return kick;
     }
 
     @Override
-    public void execute(){
+    public void execute(Karatist karatist){
         karatist.hitByHand();
     }
 }

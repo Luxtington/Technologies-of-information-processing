@@ -9,34 +9,39 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Line implements Lengthable, Polylineable, Cloneable {
+public class Line<T extends Point2D> implements Lengthable, Polylineable, Cloneable {
 
-    private Point2D beginPoint;
-    private Point2D endPoint;
+    private T beginPoint;
+    private T endPoint;
+    private final Class<T> pointClass;
 
-    public Line(Point2D begin, Point2D end) {
-        this.beginPoint = new Point2D(begin.x, begin.y);
-        this.endPoint = new Point2D(end.x, end.y);
+    public Line(Class<T> pointClass) {
+        this.pointClass = pointClass;
     }
 
-    public Line(int x1, int y1, int x2, int y2) {
-        this(new Point2D(x1, y1), new Point2D(x2, y2));
+    public void setBeginPoint(T begin) {
+        if (begin.getClass() != pointClass)
+            throw new IllegalArgumentException("U can't push different types");
+        beginPoint = begin;
+
     }
 
-    public void setBeginPoint(Point2D point) {
-        beginPoint = new Point2D(point.x, point.y);
+    public void setEndPoint(T end) {
+        if (end.getClass() != pointClass)
+            throw new IllegalArgumentException("U can't push different types");
+        endPoint = end;
     }
 
-    public void setEndPoint(Point2D point) {
-        endPoint = new Point2D(point.x, point.y);
+    public T getBeginPoint() {
+        return beginPoint;
     }
 
-    public Point2D getBeginPoint() {
-        return new Point2D(beginPoint.x, beginPoint.y);
+    public T getEndPoint() {
+        return endPoint;
     }
 
-    public Point2D getEndPoint() {
-        return new Point2D(endPoint.x, endPoint.y);
+    public Class<T> getPointClass(){
+        return pointClass;
     }
 
     @Override

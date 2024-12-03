@@ -1,11 +1,13 @@
 package ru.luxtington.oop.people.studying;
 
+import ru.luxtington.oop.generics.MyComparable;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Student {
+public class Student implements MyComparable<Student> {
     final String name;
     private List<Integer> marks;
     private Rule rule;
@@ -39,7 +41,7 @@ public class Student {
         for (i = 0; i < marks.size(); i++)
             sum += marks.get(i);
 
-        return sum / (i);
+        return (double)sum / (i);
     }
 
     public boolean isHeEpcellentStudent() {
@@ -73,6 +75,13 @@ public class Student {
         for (int i=0; i < marks.size(); i++)
             if (marks.get(i) == mark)
                 marks.remove(i);
+    }
+
+    @Override
+    public int compareTo(Student otherStudent) {
+        if ((this.getAverageMark() - otherStudent.getAverageMark()) == 0)
+            return 0;
+        return (this.getAverageMark() > otherStudent.getAverageMark()) ? 1 : -1;
     }
 
     @Override

@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Brain{
 
-    List<Hittable> combination = new ArrayList<>();
+    Combo combination;
 
 
-    public Brain(List<Hittable> combination){
+    public Brain(Combo combination){
         this.combination = combination;
     }
 
-    public void executeCombo(){
-        for (int i=0; i < combination.size(); i++){
-            combination.get(i).execute();
+    public void executeCombo(Karatist karatist){
+        for (int i=0; i < combination.kicks.size(); i++){
+            combination.kicks.get(i).execute(karatist);
         }
     }
 }

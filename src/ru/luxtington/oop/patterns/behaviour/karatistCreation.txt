@@ -1,0 +1,18 @@
+        Karatist k1 = new Karatist("Daniel");
+
+        Hittable hit1 = new HitByLeg();
+        Hittable hit2 = new HitByHand();
+        Hittable hit3 = new HitWhileJump();
+
+        Brain brain = new Brain(new Combo(new ArrayList(Arrays.asList(hit1, hit2, hit3))));
+        Brain brain2 = new Brain(new Combo(new ArrayList(Arrays.asList(hit3, hit1, hit2))));
+
+        brain.executeCombo(k1);
+        System.out.println("---------");
+        brain2.executeCombo(k1);
+
+        System.out.println("---------");
+        Combo combo2 = new Combo(new ArrayList<>(Arrays.asList(new Combo(new ArrayList(Arrays.asList(hit1, hit2, hit3))))));
+
+        Brain brain3 = new Brain(combo2);
+        brain3.executeCombo(k1);
