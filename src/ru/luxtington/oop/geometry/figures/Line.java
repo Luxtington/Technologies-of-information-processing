@@ -3,45 +3,50 @@ package ru.luxtington.oop.geometry.figures;
 import ru.luxtington.oop.geometry.GeometricHelper;
 import ru.luxtington.oop.geometry.points.Point2D;
 import ru.luxtington.oop.geometry.points.Point2DComparator;
+import ru.luxtington.oop.geometry.points.Point3D;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Line<T extends Point2D> implements Lengthable, Polylineable, Cloneable {
+public class Line<P extends Point2D> implements Lengthable, Polylineable, Cloneable {
 
-    private T beginPoint;
-    private T endPoint;
-    private final Class<T> pointClass;
+    private P beginPoint;
+    private P endPoint;
 
-    public Line(Class<T> pointClass) {
-        this.pointClass = pointClass;
+    public static <P extends Point2D> Line<P> createLine2D(Point2D<> beginPoint, P endPoint){
+        return new Line<P>(beginPoint, endPoint);
     }
 
-    public void setBeginPoint(T begin) {
-        if (begin.getClass() != pointClass)
-            throw new IllegalArgumentException("U can't push different types");
-        beginPoint = begin;
-
+    public static <P extends Point2D> Line<P> createLine2D(int x1, int y1, int x2, int y2){
+        return new Line<P>(x1, y1, x2, y2);
     }
 
-    public void setEndPoint(T end) {
-        if (end.getClass() != pointClass)
-            throw new IllegalArgumentException("U can't push different types");
-        endPoint = end;
+    private Line(P begin, P end) {
+       setBeginPoint(begin);
+       setEndPoint(end);
     }
 
-    public T getBeginPoint() {
+    private Line(int x1, int y1, int x2, int y2){
+        setBeginPoint((P)new Point2D(x1, y1));
+        setEndPoint((P)new Point2D(x2, y2));
+    }
+
+    public void setBeginPoint(P begin) {
+        this.beginPoint = begin;
+    }
+
+    public void setEndPoint(P end) {
+        this.endPoint = end;
+    }
+
+    public P getBeginPoint() {
         return beginPoint;
     }
 
-    public T getEndPoint() {
+    public P getEndPoint() {
         return endPoint;
-    }
-
-    public Class<T> getPointClass(){
-        return pointClass;
     }
 
     @Override

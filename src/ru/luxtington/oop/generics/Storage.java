@@ -3,14 +3,24 @@ package ru.luxtington.oop.generics;
 public final class Storage <T>{
 
     private final T item;
-    private final T alternativeItem;
+    private static final Storage <?> EMPTY_STORAGE = new Storage<>(null);
 
-    public Storage(T item, T alternativeItem){
+    private Storage(T item){
         this.item = item;
-        this.alternativeItem = alternativeItem;
     }
 
-    public T getItem(){
+    public static Storage <?> emptyStorage(){
+        return EMPTY_STORAGE;
+    }
+
+    public static <T> Storage<T> of(T value){
+        if (value == null){
+            return (Storage<T>)EMPTY_STORAGE;
+        }
+        return new Storage<T>(value);
+    }
+
+    public T getItem(T alternativeItem){
         if (item == null)
             return alternativeItem;
         return item;

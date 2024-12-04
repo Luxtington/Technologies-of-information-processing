@@ -16,49 +16,57 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        /*Box b1 = new Box<Integer>(3);
-        //b1.pushItem(4);
-        System.out.println((Integer) b1.popItem());
-        b1.pushItem(4);
-        System.out.println(b1);*/
+        Line<Point3D> l2 = Line.createLine2D(1, 2, 3, 4);
+        //l1.setBeginPoint(new Point3D(1,2,3));
+        //l1.setEndPoint(new Point3D(3,4,5));
+        //Point2D p1 = l1.getBeginPoint(), p2 = l1.getEndPoint();
+        //System.out.println(p1 + " | " + p2);
+        System.out.println(l2);
 
-        /*Stack<String> st1 = new Stack<>("abc1");
-        st1.push("qwe2");
-        st1.push("rty3");
-        st1.push("qqq4");
-        System.out.println("pop element = " + st1.pop());
-        System.out.println("up element = " + st1.peek());
-        System.out.println(st1);*/
+        /*Box<Integer> b1= new Box<>(1);
+        Box<Double> b2= new Box<>(3.0);
+        Box<Integer> b3= new Box<>(null);
+        System.out.println(TesterG.findMax(List.of(b1, b2, b3)));*/
 
-        /*Storage<Integer> storage1 = new Storage<>(null, 0);
-        System.out.println(storage1.getItem());
-        Storage<Integer> storage2 = new Storage<>(99, -1);
-        Storage<String> storage3 = new Storage<>(null, "default");
-        System.out.println(storage3.getItem());
-        Storage<String> storage4 = new Storage<>("hello", "hello world");*/
+        //Box<Point3D> boxResult = (Box<Point3D>) TesterG.pushPoint(new Box<Point3D>(null));
+        //System.out.println(boxResult);
 
-        /*Student s1 = new Student("Vasya", new Rule2To5(), new ArrayList<>(Arrays.asList(4,5,3)));
-        Student s2 = new Student("Petya", new Rule2To5(), new ArrayList<>(Arrays.asList(4,5,5)));
-        Student s3 = new Student("Roma", new Rule2To5(), new ArrayList<>(Arrays.asList(4,4,4)));
-        Student s4 = new Student("Gena", new Rule2To5(), new ArrayList<>(Arrays.asList(5,4,3)));
+        /*List<Number> lst1 = new ArrayList<>(List.of(1.0, 2.0, 3.0)); // Double = crash
+        TesterG.fillList(lst1);
+        System.out.println(lst1);*/
 
-        List<Student> studentsList = new ArrayList<>(Arrays.asList(s1, s2, s3, s4));
-        for (int i=0; i < studentsList.size() -1; i++){
-            if ((studentsList.get(i).compareTo(studentsList.get(i+1))) < 0)
-                System.out.println("He is worse than next");
-            else if ((studentsList.get(i).compareTo(studentsList.get(i+1))) > 0)
-                System.out.println("He is better than next");
-            else
-                System.out.println("They're equals by marks");
-        }*/
 
-        Class<Point2D> p2D = Point2D.class;
-        Class<Point3D> p3D = Point3D.class;
-        Line<Point3D> l1 = new Line<>(p3D);
-        l1.setBeginPoint(new Point3D(1,2,3));
-        l1.setEndPoint(new Point3D(3,4,5));
-        Point2D p1 = l1.getBeginPoint(), p2 = l1.getEndPoint();
-        System.out.println(p1 + " | " + p2);
-        System.out.println(l1);
+        /*List<Integer> ans = TesterG.function(new ArrayList<String>(List.of("qwerty", "abc", "quebro")),
+                new Actor<Integer, String>() {
+                    @Override
+                    public Integer apply(String str) {
+                        return str.length();
+                    }
+                });
+        System.out.println(ans);*/
+
+        /*List<String> answer = TesterG.doFiltration(new ArrayList<String>(List.of("qa","qwerty", "abc", "quebro", "qw")),
+                new Filter<String>() {
+                    @Override
+                    public boolean filtrate(String str) {
+                        return str.length() > 2;
+                    }
+                });
+        System.out.println(answer);*/
+
+        /*Integer result = TesterG.doShorter(new ArrayList<Integer>(List.of(1, 3, -7)),
+                new Shortener<Integer>() {
+                    @Override
+                    public Storage<Integer> makeShorter(List<Integer> lst) {
+                        Integer sum = 0;
+                        for (int i=0; i < lst.size(); i++)
+                            sum += lst.get(i);
+
+                        return Storage.of(sum);
+                    }
+                }).getItem(-99);
+        System.out.println(result);*/
     }
+
+
 }
