@@ -55,13 +55,13 @@ public class Tester {
             objects[i].makeMeow();
     }
 
-    public static Polyline joinPolylines(Polylineable...shapes){
+    public static Polyline<Point2D> joinPolylines(Polylineable...shapes){
         List<Point2D> points = new ArrayList<>();
         int index = 0;
 
         for (int i=0; i < shapes.length; i++){
             for (int j=0; j < shapes[i].getPolyline().points.size(); j++){
-                points.add(shapes[i].getPolyline().points.get(j));
+                points.add((Point2D) shapes[i].getPolyline().points.get(j));
             }
         }
         return new Polyline(points);

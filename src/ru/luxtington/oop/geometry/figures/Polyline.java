@@ -9,10 +9,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Polyline implements Lengthable, Polylineable {
-    public List<Point2D> points = new ArrayList<Point2D>();
+public class Polyline<T extends Point2D> implements Lengthable, Polylineable {
+    public List<T> points = new ArrayList<>();
 
-    public Polyline(List<Point2D> points) {
+    public Polyline(List<T> points) {
         this.points = points;
     }
 
@@ -20,9 +20,13 @@ public class Polyline implements Lengthable, Polylineable {
         this(new ArrayList<>());
     }
 
-    public void addPoints(Point2D... points) {
+    public void addPoints(T... points) {
         for (int i=0; i < points.length; i++)
-            this.points.add(points[i]);
+            addPoint(points[i]);
+    }
+
+    public void addPoint(T point){
+        this.points.add(point);
     }
 
     @Override
@@ -40,9 +44,9 @@ public class Polyline implements Lengthable, Polylineable {
         return new Polyline(points);
     }
 
-    private List<Point2D> addPointIfClosed(Polyline line, List <Point2D> pts){
+    private List<T> addPointIfClosed(Polyline line, List <T> pts){
 
-        List <Point2D> points = new ArrayList<>(pts);
+        List <T> points = new ArrayList<>(pts);
 
         if (line instanceof ClosedLine)
             points.add(points.get(0));
@@ -55,10 +59,10 @@ public class Polyline implements Lengthable, Polylineable {
         if (this == o) return true;
         if (!(o instanceof Polyline polyline)) return false;
 
-        List <Point2D> thisPts = addPointIfClosed(this, points);
-        List <Point2D> otherPts = addPointIfClosed(polyline, polyline.points);
+        List <T> thisPts = addPointIfClosed(this, points);
+        List <T> otherPts = addPointIfClosed(polyline, polyline.points);
 
-        List <Point2D> reversedOtherPts = new ArrayList<>(otherPts);
+        List <T> reversedOtherPts = new ArrayList<>(otherPts);
         Collections.reverse(reversedOtherPts);
 
         return Objects.equals(thisPts, otherPts) || Objects.equals(thisPts, reversedOtherPts);
@@ -67,7 +71,7 @@ public class Polyline implements Lengthable, Polylineable {
     @Override
     public int hashCode() {
 
-        List <Point2D> thisPts = addPointIfClosed(this, points);
+        List <T> thisPts = addPointIfClosed(this, points);
         int hashCodes = 0;
         for (int i=0; i < thisPts.size(); i++)
             hashCodes += thisPts.get(i).hashCode();

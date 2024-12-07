@@ -3,12 +3,14 @@ package ru.luxtington.main;
 import org.jetbrains.annotations.NotNull;
 import ru.luxtington.oop.generics.Box;
 import ru.luxtington.oop.generics.Storage;
+import ru.luxtington.oop.geometry.figures.Polyline;
+import ru.luxtington.oop.geometry.points.Point2D;
 import ru.luxtington.oop.geometry.points.Point3D;
-import ru.luxtington.oop.people.gunner.Shooter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class TesterG {
 
@@ -57,12 +59,12 @@ public class TesterG {
 
     /*--------------------------------------------------------------------------*/
 
-    public static <T,O> List<O> function(@NotNull List<T> lst, Actor<O, T> actor){
+    public static <T,O> List<O> function(@NotNull List<T> lst, Applier<O, T> applier){
 
         List<O> newLst= new ArrayList<>();
 
         for (int i=0; i < lst.size(); i++){
-            newLst.add(actor.apply(lst.get(i)));
+            newLst.add(applier.apply(lst.get(i)));
         }
 
         return newLst;
@@ -80,8 +82,38 @@ public class TesterG {
         return newLst;
     }
 
-    public static <T> Storage<T> doShorter(@NotNull List<T> lst, Shortener<T> shortener){
-        return shortener.makeShorter(lst);
+    public static <T, R> Storage<R> makeReducer(@NotNull List<T> lst, Reducer<R,T> reducer, @NotNull R init){
+        //return reducer.reduce(lst); my decision was wrong, cause there's no loop here
+        if (lst.isEmpty())
+            return Storage.of(init);
+        R value = init;
+        for (int i=0; i < lst.size(); i++){
+            value = reducer.reduce(value, lst.get(i));
+            //reducer.reduce(value, lst.get(i));
+        }
+        return Storage.of(value);
     }
 
+    public static <T, R> R collect(@NotNull List<T> lst, MyBiConsumer<R, T> cons, Supplier<R> sup){
+        R result = sup.get();
+
+        for (T t : lst){
+            cons.accept(result, t);
+        }
+
+        return result;
+    }
+
+    public static <T extends Point2D, R> Polyline<T> makeMovedPolyline(List<T> points, Applier<T, T> applier, Filter<T> filter, MyBiConsumer<R, T> consumer){
+
+        //List <T> movedPoints = new ArrayList<>();
+        Polyline<T> polyline = new Polyline<>();
+
+        for (int i=0; i < points.size(); i++){
+            T currPoint = applier.apply(points.get(i));
+            if (filter.filtrate(currPoint))
+                consumer.accept((R) polyline, currPoint);
+        }
+        return polyline;
+    }
 }

@@ -23,7 +23,7 @@ public class GeometricHelper
 
         for (int i=0; i < shapes.length; i++){
             for (int j=0; j < shapes[i].getPolyline().points.size(); j++){
-                points.add(shapes[i].getPolyline().points.get(j));
+                points.add((Point2D) shapes[i].getPolyline().points.get(j));
             }
         }
         return new Polyline(points);

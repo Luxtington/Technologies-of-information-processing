@@ -15,8 +15,12 @@ public class Line<P extends Point2D> implements Lengthable, Polylineable, Clonea
     private P beginPoint;
     private P endPoint;
 
-    public static <P extends Point2D> Line<P> createLine2D(Point2D<> beginPoint, P endPoint){
+    /*public static <P extends Point2D> Line<P> createLine2D(Point2D<> beginPoint, P endPoint){
         return new Line<P>(beginPoint, endPoint);
+    }*/
+
+    public static <P extends Point2D> Line<P> createLine3D(int x1, int y1, int z1, int x2, int y2, int z2){
+        return new Line<P>(x1, y1, z1, x2, y2, z2);
     }
 
     public static <P extends Point2D> Line<P> createLine2D(int x1, int y1, int x2, int y2){
@@ -31,6 +35,11 @@ public class Line<P extends Point2D> implements Lengthable, Polylineable, Clonea
     private Line(int x1, int y1, int x2, int y2){
         setBeginPoint((P)new Point2D(x1, y1));
         setEndPoint((P)new Point2D(x2, y2));
+    }
+
+    private Line(int x1, int y1, int z1, int x2, int y2, int z2){
+        setBeginPoint((P)new Point3D(x1, y1, z1));
+        setEndPoint((P)new Point3D(x2, y2, z2));
     }
 
     public void setBeginPoint(P begin) {

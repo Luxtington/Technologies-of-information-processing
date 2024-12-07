@@ -1,6 +1,6 @@
 package ru.luxtington.main;
 
-public interface Actor <O,T>{
+public interface Applier<O,T>{
     O apply(T obj);
 }
 

@@ -16,7 +16,7 @@ public class ClosedLine extends Polyline {
     @Override
     public int length() {
         if (super.points.size() < 3) return super.length();
-        return super.length() + GeometricHelper.distanceBetweenTwoPoints(super.points.get(0), super.points.get(super.points.size() - 1));
+        return super.length() + GeometricHelper.distanceBetweenTwoPoints((Point2D) super.points.get(0), (Point2D) super.points.get(super.points.size() - 1));
     }
 
     @Override
