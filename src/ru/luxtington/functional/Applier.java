@@ -1,4 +1,4 @@
-package ru.luxtington.main;
+package ru.luxtington.functional;
 
 public interface Applier<O,T>{
     O apply(T obj);

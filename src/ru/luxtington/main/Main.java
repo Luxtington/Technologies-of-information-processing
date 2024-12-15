@@ -1,34 +1,16 @@
 package ru.luxtington.main;
 
+import ru.luxtington.functional.Applier;
+import ru.luxtington.functional.DataStream;
+import ru.luxtington.functional.Filter;
 import ru.luxtington.oop.geometry.figures.Polyline;
 import ru.luxtington.oop.geometry.points.Point2D;
-import ru.luxtington.oop.geometry.points.Point3D;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
-        /*Line<Point3D> l2 = Line.createLine2D(1, 2, 3, 4);
-        //l1.setBeginPoint(new Point3D(1,2,3));
-        //l1.setEndPoint(new Point3D(3,4,5));
-        //Point2D p1 = l1.getBeginPoint(), p2 = l1.getEndPoint();
-        //System.out.println(p1 + " | " + p2);
-        System.out.println(l2);*/
-
-        /*Box<Integer> b1= new Box<>(1);
-        Box<Double> b2= new Box<>(3.0);
-        Box<Integer> b3= new Box<>(null);
-        System.out.println(TesterG.findMax(List.of(b1, b2, b3)));*/
-
-        //Box<Point3D> boxResult = (Box<Point3D>) TesterG.pushPoint(new Box<Point3D>(null));
-        //System.out.println(boxResult);
-
-        /*List<Number> lst1 = new ArrayList<>(List.of(1.0, 2.0, 3.0)); // Double = crash
-        TesterG.fillList(lst1);
-        System.out.println(lst1);*/
-
 
         /*List<Integer> ans = TesterG.function(new ArrayList<String>(List.of("qwerty", "abc", "quebro")),
                 new Applier<Integer, String>() {
@@ -100,25 +82,13 @@ public class Main {
 
         List<Point2D> points = List.of(new Point2D(1,2), new Point2D(3, 4),  new Point2D(-33, 4));
 
-        Polyline<Point2D> newPolyline = TesterG.makeMovedPolyline(points,
-                new Applier<Point2D, Point2D>() {
-                    @Override
-                    public Point2D apply(Point2D point) {
-                        return new Point2D(point.x + 5, point.y);
-                    }
-                },
-                new Filter<Point2D>() {
-                    @Override
-                    public boolean filtrate(Point2D point) {
-                        return (point.x > 0);
-                    }
-                },
-                new MyBiConsumer<Polyline<Point2D>, Point2D>() {
-                    @Override
-                    public void accept(Polyline<Point2D> polyline, Point2D point){
-                        polyline.addPoint(point);
-                    }
-                });
-        System.out.println(newPolyline);
+        DataStream<Point2D> ds = DataStream.of(points);
+
+        Polyline<Point2D> pol = ds
+                .map(point -> new Point2D(point.x +5, point.y + 5))
+                .filter(point -> point.x > 0 && point.y >0)
+                .collect(Polyline::addPoint, Polyline::new);
+
+        System.out.println(pol);
     }
 }

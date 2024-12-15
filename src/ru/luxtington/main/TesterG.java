@@ -1,20 +1,14 @@
 package ru.luxtington.main;
 
-import org.jetbrains.annotations.NotNull;
-import ru.luxtington.oop.generics.Box;
-import ru.luxtington.oop.generics.Storage;
-import ru.luxtington.oop.geometry.figures.Polyline;
-import ru.luxtington.oop.geometry.points.Point2D;
-import ru.luxtington.oop.geometry.points.Point3D;
+public class TesterG<T> {
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Supplier;
+    /*private List<T> lst;
 
-public class TesterG {
+    private DataStream(List <T> lst){
+        this.lst = lst;
+    }
 
-    public static Storage<Integer> summInts(List<Integer> nums){
+    public Storage<Integer> summInts(List<Integer> nums){
 
         if (nums.isEmpty())
             return (Storage<Integer>)Storage.emptyStorage();
@@ -26,7 +20,7 @@ public class TesterG {
         return Storage.of(sum);
     }
 
-    public static double findMax(@NotNull List<Box<? extends Number>> boxes){
+    public double findMax(@NotNull List<Box<? extends Number>> boxes){
 
         List<Box<? extends Number>> copyBoxes = new ArrayList<>(boxes);
 
@@ -43,7 +37,7 @@ public class TesterG {
         return max;
     }
 
-    public static Box<? super Point3D> pushPoint(Box<? super Point3D> box){
+    public Box<? super Point3D> pushPoint(Box<? super Point3D> box){
         box.popItem();
         Random r = new Random();
         int x = r.nextInt()%20, y = r.nextInt()%20, z = r.nextInt()%20;
@@ -55,22 +49,36 @@ public class TesterG {
         Random r = new Random();
         for (int i=0; i < numbers.size(); i++)
             numbers.set(i, Math.abs(r.nextInt()%101));
-    }
+    }*/
 
     /*--------------------------------------------------------------------------*/
 
-    public static <T,O> List<O> function(@NotNull List<T> lst, Applier<O, T> applier){
+    /*public static <T>DataStream<T> of(List<T> obj){
+        return new DataStream<>(obj);
+    }
+
+    public <T,O> List<O> function(@NotNull List<T> lst, Function<O, T> function){
 
         List<O> newLst= new ArrayList<>();
 
         for (int i=0; i < lst.size(); i++){
-            newLst.add(applier.apply(lst.get(i)));
+            newLst.add(function.apply(lst.get(i)));
         }
 
         return newLst;
     }
 
-    public static <T> List<T> doFiltration(@NotNull List<T> lst, Filter<T> filter){
+    public <R> DataStream<R> map(Function<T, R> function){
+        List<R> newLt = new ArrayList<>(lst.size());
+        for (T t : lst){
+            newLt.add(function.apply(t));
+        }
+        DataStream<R> newDs = (DataStream<R>) this;
+        newDs.lst = newLt;
+        return newDs;
+    }
+
+    public <T> DataStream<T> doFiltration(Filter<T> filter){
 
         List<T> newLst = new ArrayList<>();
 
@@ -82,7 +90,7 @@ public class TesterG {
         return newLst;
     }
 
-    public static <T, R> Storage<R> makeReducer(@NotNull List<T> lst, Reducer<R,T> reducer, @NotNull R init){
+    public <T, R> Storage<R> makeReducer(@NotNull List<T> lst, Reducer<R,T> reducer, @NotNull R init){
         //return reducer.reduce(lst); my decision was wrong, cause there's no loop here
         if (lst.isEmpty())
             return Storage.of(init);
@@ -94,26 +102,29 @@ public class TesterG {
         return Storage.of(value);
     }
 
-    public static <T, R> R collect(@NotNull List<T> lst, MyBiConsumer<R, T> cons, Supplier<R> sup){
+    public <T, R> R collect(@NotNull List<T> lst, MyBiConsumer<R, T> cons, Supplier<R> sup){
         R result = sup.get();
+
+        if (lst.isEmpty())
+            return result;
 
         for (T t : lst){
             cons.accept(result, t);
         }
 
         return result;
-    }
+    }*/
 
-    public static <T extends Point2D, R> Polyline<T> makeMovedPolyline(List<T> points, Applier<T, T> applier, Filter<T> filter, MyBiConsumer<R, T> consumer){
+    /*public static <T extends Point2D, R> Polyline<T> makeMovedPolyline(List<T> points, Map<T, T> map, Filter<T> filter, MyBiConsumer<R, T> consumer){
 
         //List <T> movedPoints = new ArrayList<>();
         Polyline<T> polyline = new Polyline<>();
 
         for (int i=0; i < points.size(); i++){
-            T currPoint = applier.apply(points.get(i));
+            T currPoint = map.apply(points.get(i));
             if (filter.filtrate(currPoint))
                 consumer.accept((R) polyline, currPoint);
         }
         return polyline;
-    }
+    }*/
 }
