@@ -28,6 +28,11 @@ public class Square{
         this.sideSize = sideSize;
     }
 
+    public double area(){
+        System.out.println("Calculate area: ");
+        return sideSize*sideSize;
+    }
+
     public Polyline getPolyline() {
         List<Point2D> squarePoints = new ArrayList<>(5);
 

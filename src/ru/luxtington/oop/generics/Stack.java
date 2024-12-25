@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Stack <T>{
-    private List<T> arr = new ArrayList<>();
+    private List<T> arr;
+
+    public Stack(){
+         arr = new ArrayList<>();
+    }
 
     public Stack(T root){
+        this();
         push(root);
     }
 
@@ -22,6 +27,10 @@ public class Stack <T>{
 
     public T peek(){
         return arr.get(arr.size()-1);
+    }
+
+    public boolean isEmpty(){
+        return arr.isEmpty();
     }
 
     public String toString(){

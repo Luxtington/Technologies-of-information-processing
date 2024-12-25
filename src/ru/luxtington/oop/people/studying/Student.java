@@ -1,16 +1,16 @@
 package ru.luxtington.oop.people.studying;
 
 import ru.luxtington.oop.generics.MyComparable;
+import ru.luxtington.oop.generics.Stack;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 public class Student implements MyComparable<Student> {
-    final String name;
+
+    private String name;
     private List<Integer> marks;
     private Rule rule;
+    private Deque<Update> updateHistory = new ArrayDeque<>();
 
     public Student(String name, Rule rule, List<Integer> marks) {
         this.name = name;
@@ -20,6 +20,92 @@ public class Student implements MyComparable<Student> {
 
     public Student(String name, Rule rule, Integer... marks) {
         this(name, rule, Arrays.asList(marks));
+    }
+
+    public Save save(){
+        return new StudentSave();
+    }
+
+    public void rollBack(){
+        if (updateHistory.isEmpty()){
+            System.out.println("There're no updates to roll back");
+            return;
+        }
+        updateHistory.pop().rollBack();
+    }
+
+    class AddMarkUpdate implements Update{
+
+        @Override
+        public void rollBack() {
+            Student.this.marks.remove(Student.this.marks.size() - 1);  // ???
+        }
+    }
+
+    class RemoveMarkUpdate implements Update{
+        private Integer mark;
+
+        public RemoveMarkUpdate(Integer mark) {
+            this.mark = mark;
+        }
+
+        @Override
+        public void rollBack() {
+            Student.this.marks.add(mark);
+        }
+    }
+
+    class SetNameUpdate implements Update{
+
+        private String oldName;
+        private String newName;
+
+        public SetNameUpdate(String newName) {
+            this.oldName = Student.this.name;
+            this.newName = newName;
+        }
+
+        @Override
+        public void rollBack() {
+            Student.this.name = oldName;
+        }
+    }
+    class AddMarksUpdate implements Update{
+
+        private List<Integer> marks;
+
+        public AddMarksUpdate(List<Integer> marks) {
+            this.marks = marks;
+        }
+
+        @Override
+        public void rollBack() {
+            for (int i=marks.size() - 1; i >= 0; i--)
+                Student.this.marks.remove(i);
+        }
+    }
+
+    class StudentSave implements Save{
+
+        private final String name;
+        private final List<Integer> marks;
+
+
+        public StudentSave() {
+            this.name = Student.this.name;
+            this.marks = Student.this.getMarks();
+        }
+
+        @Override
+        public void load(){
+            Student.this.name = name;
+            Student.this.marks = new ArrayList<>(marks);
+        }
+    }
+
+    public void setName(String name){
+        updateHistory.push(new SetNameUpdate(name));
+        this.name = name;
     }
 
     public void setMarks(List<Integer> marks) {
@@ -57,13 +143,18 @@ public class Student implements MyComparable<Student> {
     }
 
     public void addMarks(List<Integer> marks) {
-        for (int i = 0; i < marks.size(); i++)
+        for (int i = 0; i < marks.size(); i++){
             this.addMark(marks.get(i));
+            updateHistory.push(new AddMarksUpdate(marks));
+        }
     }
 
     public void addMark(int mark) throws IncorrectMarkException {
-        if (rule.isCorrectMark(mark))
+        if (rule.isCorrectMark(mark)){
             marks.add(mark);
+            updateHistory.push(new AddMarkUpdate());
+        }
+
         else
             throw new IncorrectMarkException("Incorrect value of student's mark");
     }
@@ -72,9 +163,13 @@ public class Student implements MyComparable<Student> {
         if (!(marks.contains(mark)))
             throw new IllegalArgumentException("There's no such mark in student's marks");
 
-        for (int i=0; i < marks.size(); i++)
-            if (marks.get(i) == mark)
+        for (int i=marks.size() - 1; i >= 0 ; i--)
+            if (marks.get(i) == mark){
                 marks.remove(i);
+                updateHistory.push(new RemoveMarkUpdate(mark));
+                break;
+            }
+
     }
 
     @Override

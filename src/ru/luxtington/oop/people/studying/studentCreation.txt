@@ -43,3 +43,32 @@
                         System.out.println("They're equals by marks");
                 }
 
+
+                        List<Integer> marks = List.of(2,5,3);
+                        Student s1 = new Student("Petya", new Rule2To5(), marks);
+
+                        Save save = s1.save();
+                        System.out.println(s1);
+
+                        s1.setName("Ann");
+                        s1.addMarks(List.of(2,2,3,5));
+
+                        s1.removeMark(5);
+                        s1.addMark(2);
+                        s1.setName("Pasha");
+
+                        s1.rollBack();
+                        s1.rollBack();
+                        s1.rollBack();
+
+                        System.out.println(s1);
+
+                        s1.addMarks(List.of(5,5,5,5));
+                        System.out.println(s1);
+
+                        s1.rollBack();
+                        System.out.println(s1);
+
+                        //save.load();
+                        //System.out.println(s1);
+

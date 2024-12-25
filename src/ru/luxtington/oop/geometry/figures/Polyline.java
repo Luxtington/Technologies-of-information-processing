@@ -1,15 +1,13 @@
 package ru.luxtington.oop.geometry.figures;
 
+import org.jetbrains.annotations.NotNull;
 import ru.luxtington.oop.geometry.GeometricHelper;
 import ru.luxtington.oop.geometry.points.Point2D;
 import ru.luxtington.oop.geometry.points.Point2DComparator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
-public class Polyline<T extends Point2D> implements Lengthable, Polylineable {
+public class Polyline<T extends Point2D> implements Lengthable, Polylineable, Iterable<Point2D> {
     public List<T> points = new ArrayList<>();
 
     public Polyline(List<T> points) {
@@ -84,5 +82,10 @@ public class Polyline<T extends Point2D> implements Lengthable, Polylineable {
         String res = "Polyline: ";
         res += points.toString();
         return res;
+    }
+
+    @Override
+    public @NotNull Iterator iterator() {
+        return points.iterator();
     }
 }

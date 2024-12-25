@@ -1,8 +1,8 @@
 package ru.luxtington.functional;
 
-public interface Applier<O,T>{
-    O apply(T obj);
+public interface Applier<R,T>{
+    R apply(T obj);
 }
 
-//  O - output
+//  R - result
 // T - input object type

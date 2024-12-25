@@ -1,0 +1,33 @@
+        /*List<Point2D> points = List.of(new Point2D(1,2), new Point2D(3, 4),  new Point2D(-33, 4));
+
+        DataStream<Point2D> ds = DataStream.of(points);
+
+        Polyline<Point2D> pol = ds
+                .map(point -> new Point2D(point.x +5, point.y + 5))
+                .filter(point -> point.x > 0 && point.y >0)
+                .collect(Polyline::addPoint, Polyline::new);
+
+        System.out.println(pol);*/
+
+        /*List <String> strList = List.of("qwe", "rtyu", "qahhzs", "ahshdhgbsvg");
+        //List <Integer> strList = List.of(1, 2, 3, 4);
+        DataStream<String> dsTest= DataStream.of(strList);
+
+        Integer res =  dsTest
+                .map((Applier<Integer, String>) str -> str.length())
+                .filter(new Filter<Integer>() {
+                    @Override
+                    public boolean filtrate(Integer size) {
+                        return size > 3;
+                    }
+                })
+                .reduce(new Reductor<Integer>() {
+                    @Override
+                    public Integer reduce(Integer val1, Integer val2) {
+                        return val1 + val2;
+                    }
+                }, 0);
+
+        System.out.println(res);
+
+        //DataStream<Polyline<Point2D>> ds2 = DataStream.of(Collections.singleton(new Polyline<Point2D>()));*/
