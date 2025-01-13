@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Triangle extends Figure implements Polylineable {
+public class Triangle extends Figure implements Polylineable, Moveable {
 
     private Point2D secondPoint;
     private Point2D thirdPoint;
@@ -44,5 +44,24 @@ public class Triangle extends Figure implements Polylineable {
         if ((dist1 + dist2) > dist3 && (dist2 + dist3) > dist1 && (dist1 + dist3) > dist2)
             return true;
         return false;
+    }
+
+    @Override
+    public void moveFigure(Axis axis, int step){
+
+        if (axis == Axis.X_AXIS){
+            super.beginPoint.x += step;
+            secondPoint.x += step;
+            thirdPoint.x += step;
+        }
+        else{
+            super.beginPoint.y += step;
+            secondPoint.y += step;
+            thirdPoint.y += step;
+        }
+    }
+
+    public String toString(){
+        return "Triangle in points: " + super.beginPoint + ", " + secondPoint + ", " + thirdPoint;
     }
 }

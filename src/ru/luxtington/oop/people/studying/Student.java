@@ -91,7 +91,7 @@ public class Student implements MyComparable<Student> {
         private final List<Integer> marks;
 
 
-        public StudentSave() {
+        private StudentSave() {
             this.name = Student.this.name;
             this.marks = Student.this.getMarks();
         }

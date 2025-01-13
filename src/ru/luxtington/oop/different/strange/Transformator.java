@@ -1,4 +1,4 @@
-package ru.luxtington.oop.different.Strange;
+package ru.luxtington.oop.different.strange;
 
 public abstract class Transformator {
 

@@ -8,18 +8,21 @@ public class Cat implements Meowable{
     }
 
     public void makeMeow(int times) {
-        String res = name + ": ";
-        for (int i = 0; i < times; i++) {
-            res += "meow";
-            if (i == times - 1) res += "!";
-            else res += ", ";
-        }
+        StringBuilder res = new StringBuilder(name + ": ");
+
+        for (int i = 0; i < times; i++)
+            res.append("Meow ");
+
         System.out.println(res);
     }
 
     @Override
     public void makeMeow() {
         makeMeow(1);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String toString() {

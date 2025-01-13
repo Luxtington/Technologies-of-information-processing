@@ -1,4 +1,4 @@
-package ru.luxtington.main;
+package ru.luxtington.oop.tests;
 
 import ru.luxtington.oop.different.animals.birds.Bird;
 import ru.luxtington.oop.different.animals.cats.Meowable;

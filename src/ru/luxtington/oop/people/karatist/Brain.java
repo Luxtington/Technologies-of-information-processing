@@ -1,7 +1,4 @@
-package ru.luxtington.oop.patterns.behaviour;
-
-import java.util.ArrayList;
-import java.util.List;
+package ru.luxtington.oop.people.karatist;
 
 public class Brain{
 

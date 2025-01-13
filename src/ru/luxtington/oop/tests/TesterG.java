@@ -1,4 +1,4 @@
-package ru.luxtington.main;
+package ru.luxtington.oop.tests;
 
 public class TesterG<T> {
 

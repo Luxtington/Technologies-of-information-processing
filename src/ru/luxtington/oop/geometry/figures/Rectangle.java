@@ -5,7 +5,7 @@ import ru.luxtington.oop.geometry.points.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rectangle extends Figure implements Polylineable {
+public class Rectangle extends Figure implements Polylineable, Moveable {
 
     private int firstSide;
     private int secondSide;
@@ -58,8 +58,15 @@ public class Rectangle extends Figure implements Polylineable {
         squarePoints.add(new Point2D(super.beginPoint.x + firstSide, super.beginPoint.y - secondSide));
         squarePoints.add(new Point2D(super.beginPoint.x, super.beginPoint.y - secondSide));
 
-        //return new Polyline(squarePoints);
         return new ClosedLine(squarePoints);
+    }
+
+    @Override
+    public void moveFigure(Axis axis, int step) {
+        if (axis == Axis.X_AXIS)
+            super.beginPoint.x += step;
+        else
+            super.beginPoint.y += step;
     }
 
     public String toString() {

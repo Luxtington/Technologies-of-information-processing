@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Line<P extends Point2D> implements Lengthable, Polylineable, Cloneable {
+public class Line<P extends Point2D> implements Lengthable, Polylineable, Cloneable, Moveable {
 
     private P beginPoint;
     private P endPoint;
@@ -65,8 +65,19 @@ public class Line<P extends Point2D> implements Lengthable, Polylineable, Clonea
 
     @Override
     public Polyline getPolyline(){
-
         return new Polyline(new ArrayList<>(Arrays.asList(beginPoint, endPoint)));
+    }
+
+    @Override
+    public void moveFigure(Axis axis, int step) {
+        if (axis == Axis.X_AXIS){
+            beginPoint.x += step;
+            endPoint.x += step;
+        }
+        else{
+            beginPoint.y += step;
+            endPoint.y += step;
+        }
     }
 
     @Override

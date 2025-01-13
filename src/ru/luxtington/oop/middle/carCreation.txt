@@ -5,27 +5,27 @@
         List <Engine> engines1 = new ArrayList<>(Arrays.asList(e1, e2, e3, e4));
 
 
-        Car car1 = new Car(e1, 50, "BMW", engines1), car2 = new Car(e4, 70, "Audi", engines1);
+        Car myCar1 = new Car(e1, 50, "BMW", engines1), myCar2 = new Car(e4, 70, "Audi", engines1);
 
 
-        Feature f1 = new Feature("Fly", new ArrayList<>(Arrays.asList(car1, car2)));
+        Feature f1 = new Feature("Fly", new ArrayList<>(Arrays.asList(myCar1, myCar2)));
 
-        Car car3 = new Car(e4, 30, "Schoda", engines1);
+        Car myCar3 = new Car(e4, 30, "Schoda", engines1);
 
-        car1.refuelCar(51);
-        car1.goByCoordinates(1, 49);
+        myCar1.refuelCar(51);
+        myCar1.goByCoordinates(1, 49);
 
-        car1.installFeature(f1);
-        car1.setEngine(e3);
+        myCar1.installFeature(f1);
+        myCar1.setEngine(e3);
 
-        //car1.removeFeatureByIndex(0); - ok
-        System.out.println(car1.getFeatures());
+        //myCar1.removeFeatureByIndex(0); - ok
+        System.out.println(myCar1.getFeatures());
 
 
 
-        System.out.println(car1);
+        System.out.println(myCar1);
         //System.out.println(e1.getMileage());// mileage should be greater - ok
 
 
-        //car3.installFeature(f1); exc because unsupported feature - ok
-        //car1.setEngine(e5); exc because unsupported engine - ok
+        //myCar3.installFeature(f1); exc because unsupported feature - ok
+        //myCar1.setEngine(e5); exc because unsupported engine - ok

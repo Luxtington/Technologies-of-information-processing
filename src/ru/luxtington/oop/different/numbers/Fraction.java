@@ -1,16 +1,34 @@
 package ru.luxtington.oop.different.numbers;
 
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Stream;
 
 public final class Fraction extends Number implements Cloneable{
+
     private final int numerator;
     private final int denominator;
 
-    public Fraction(int numerator, int denominator) {
+    private static List<Fraction> fractions = new ArrayList<>();
+    //private static Map<Double, Fraction> fractions = new HashMap<>();
+
+    private Fraction(int numerator, int denominator) {
         this.numerator = numerator;
 
         if (denominator < 0) throw new IllegalArgumentException("Incorrect denominator's value");
         this.denominator = denominator;
+    }
+
+    public static Fraction createFraction(int numerator, int denominator){
+        Fraction fraction = fractions.stream()
+                .filter(f -> f.getNumerator() == numerator && f.getDenominator() == denominator)
+                .findFirst().orElse(null);
+
+        if (fraction == null){
+            Fraction fr = new Fraction(numerator, denominator);
+            fractions.add(fr);
+            return fr;
+        }
+        return fraction;
     }
 
     public Fraction plus(Fraction fraction) {
@@ -86,6 +104,14 @@ public final class Fraction extends Number implements Cloneable{
         catch (CloneNotSupportedException e){
             throw new RuntimeException(e);
         }
+    }
+
+    public int getNumerator() {
+        return numerator;
+    }
+
+    public int getDenominator() {
+        return denominator;
     }
 
     public String toString() {

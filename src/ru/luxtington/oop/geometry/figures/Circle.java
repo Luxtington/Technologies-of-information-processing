@@ -2,7 +2,7 @@ package ru.luxtington.oop.geometry.figures;
 
 import ru.luxtington.oop.geometry.points.Point2D;
 
-public class Circle extends Figure{
+public class Circle extends Figure implements Moveable{
 
     private int radius;
 
@@ -18,7 +18,19 @@ public class Circle extends Figure{
     }
 
     @Override
+    public void moveFigure(Axis axis, int step) {
+        if (axis == Axis.X_AXIS)
+            super.beginPoint.x += step;
+        else
+            super.beginPoint.y += step;
+    }
+
+    @Override
     public double area(){
         return Math.PI * radius * radius;
+    }
+
+    public String toString(){
+        return "Circle with center in " + super.beginPoint + ", with radius = " + radius;
     }
 }

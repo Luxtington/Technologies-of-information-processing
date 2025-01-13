@@ -1,14 +1,25 @@
 package ru.luxtington.oop.geometry.points;
 
+import ru.luxtington.oop.geometry.figures.Axis;
+import ru.luxtington.oop.geometry.figures.Moveable;
+
 import java.util.Objects;
 
-public class Point2D implements Cloneable{
+public class Point2D implements Cloneable, Moveable {
     public int x;
     public int y;
 
     public Point2D(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public void moveFigure(Axis axis, int step) {
+        if (axis == Axis.X_AXIS)
+            this.x += step;
+        else
+            this.y += step;
     }
 
     @Override

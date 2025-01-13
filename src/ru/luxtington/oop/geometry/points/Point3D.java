@@ -5,9 +5,8 @@ import java.util.Objects;
 public class Point3D extends Point2D {
     public int z;
 
-    public Point3D(int x, int y, int z)
-    {
-        super(x,y);
+    public Point3D(int x, int y, int z) {
+        super(x, y);
         this.z = z;
     }
 
@@ -25,10 +24,8 @@ public class Point3D extends Point2D {
         return Objects.hash(super.hashCode(), z);
     }
 
-
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "{" + x + ";" + y + ";" + z + "}";
     }
 }

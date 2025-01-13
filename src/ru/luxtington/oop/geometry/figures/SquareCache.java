@@ -7,7 +7,7 @@ public class SquareCache extends Square{
     private double cacheArea;
 
     public SquareCache(Square sq) {
-        super(sq.leftUpPoint, sq.getSideSize());
+        super(sq.getLeftUpPoint(), sq.getSideSize());
         this.sq = sq;
     }
 

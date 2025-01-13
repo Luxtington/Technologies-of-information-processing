@@ -1,4 +1,4 @@
-package ru.luxtington.oop.patterns.behaviour;
+package ru.luxtington.oop.people.karatist;
 
 import java.util.ArrayList;
 import java.util.List;

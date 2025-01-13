@@ -5,12 +5,13 @@ import ru.luxtington.oop.geometry.points.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Square{
-    public Point2D leftUpPoint;
+public class Square extends Figure implements Moveable{
+    //public Point2D leftUpPoint;
     private int sideSize;
 
     public Square(Point2D leftUpPoint, int sideSize) {
-        this.leftUpPoint = leftUpPoint;
+        //this.leftUpPoint = leftUpPoint;
+        super(leftUpPoint);
         setSideSize(sideSize);
     }
 
@@ -33,19 +34,31 @@ public class Square{
         return sideSize*sideSize;
     }
 
+    public Point2D getLeftUpPoint(){
+        return new Point2D(super.beginPoint.x, super.beginPoint.y);
+    }
+
+    @Override
+    public void moveFigure(Axis axis, int step) {
+        if (axis == Axis.X_AXIS)
+            super.beginPoint.x += step;
+        else
+            super.beginPoint.y += step;
+    }
+
     public Polyline getPolyline() {
         List<Point2D> squarePoints = new ArrayList<>(5);
 
-        squarePoints.set(0, leftUpPoint);
-        squarePoints.set(1, new Point2D(leftUpPoint.x + sideSize, leftUpPoint.y));
-        squarePoints.set(2, new Point2D(leftUpPoint.x + sideSize, leftUpPoint.y - sideSize));
-        squarePoints.set(3, new Point2D(leftUpPoint.x, leftUpPoint.y - sideSize));
-        squarePoints.set(4, leftUpPoint);
+        squarePoints.set(0, super.beginPoint);
+        squarePoints.set(1, new Point2D(super.beginPoint.x + sideSize, super.beginPoint.y));
+        squarePoints.set(2, new Point2D(super.beginPoint.x + sideSize, super.beginPoint.y - sideSize));
+        squarePoints.set(3, new Point2D(super.beginPoint.x, super.beginPoint.y - sideSize));
+        squarePoints.set(4, super.beginPoint);
 
         return new Polyline(squarePoints);
     }
 
     public String toString() {
-        return "Square in point " + leftUpPoint + " with side's size = " + leftUpPoint;
+        return "Square in point " + super.beginPoint + " with side's size = " + sideSize;
     }
 }
