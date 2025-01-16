@@ -3,23 +3,19 @@ package ru.luxtington.oop.people.departments;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Department
-{
+public class Department {
     String title;
     Worker chief;
     List<Worker> workers = new ArrayList<Worker>();
 
-    public Department(String title, Worker chief)
-    {
+    public Department(String title, Worker chief) {
         this.title = title;
         this.setChief(chief);
     }
 
-    public void setChief(Worker newChief)
-    {
+    public void setChief(Worker newChief) {
         if (this.chief == newChief) return;
-        if (newChief == null)
-        {
+        if (newChief == null) {
             this.chief = null;
             return;
         }
@@ -27,32 +23,26 @@ public class Department
         this.chief = newChief;
     }
 
-    public Worker getChief()
-    {
+    public Worker getChief() {
         return chief;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
-    public List<Worker> getListWorkers()
-    {
+    public List<Worker> getListWorkers() {
         return new ArrayList<>(workers);
     }
 
-    public int getCurrCountWorkers()
-    {
+    public int getCurrCountWorkers() {
         return workers.size();
     }
 
-    public void addWorker(Worker newWorker)
-    {
+    public void addWorker(Worker newWorker) {
         if (workers.contains(newWorker)) return;
 
-        if (newWorker.department != null)
-        {
+        if (newWorker.department != null) {
             if (newWorker.department.chief == newWorker)
                 newWorker.department.setChief(null);
             newWorker.department.removeWorker(newWorker);
@@ -62,10 +52,8 @@ public class Department
         newWorker.setDepartment(this);
     }
 
-    public void removeWorker(Worker worker)
-    {
-        if (workers.contains(worker))
-        {
+    public void removeWorker(Worker worker) {
+        if (workers.contains(worker)) {
             workers.remove(worker);
 
             if (this.chief == worker)
@@ -75,8 +63,7 @@ public class Department
         }
     }
 
-    public String toString()
-    {
+    public String toString() {
         if (chief == null)
             return title + " department without chief";
         return title + " department, his chief " + chief.surname;

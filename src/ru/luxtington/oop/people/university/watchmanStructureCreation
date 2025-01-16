@@ -1,0 +1,13 @@
+        Student s1 = new Student(null, 123456);
+        Student s2 = new Student("", 123456);
+        Student s3 = new Student("Pete", 123456);
+
+        Teacher t1 = new Teacher(null, 123, "rector");
+        Teacher t2 = new Teacher("VE", 123, "");
+
+        Person p = new Person();
+
+        List<Person> people = List.of(s1, s2, s3, t1, t2, p);
+
+        for (Person per : people)
+            System.out.println(Watchman.checkUser(per));

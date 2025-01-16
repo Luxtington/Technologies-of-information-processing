@@ -1,0 +1,11 @@
+        CoupePlace pl1 = new CoupePlace(1, Location.UP_PLACE);
+        CoupePlace pl2 = new CoupePlace(2, Location.UP_PLACE);
+        CoupePlace pl3 = new CoupePlace(3, Location.LOW_PLACE);
+        CoupePlace pl4 = new CoupePlace(4, Location.LOW_PLACE);
+
+        Coupe c1 = new CoupeProxy(pl1, pl2, pl3, pl4);
+
+        BoxOffice.sellTicketToCoupe(c1, new Customer("Alex", Gender.MALE_GENDER));
+        BoxOffice.sellTicketToCoupe(c1, new Customer("Misha", Gender.MALE_GENDER));
+        BoxOffice.sellTicketToCoupe(c1, new Customer("Vitya", Gender.MALE_GENDER));
+        BoxOffice.sellTicketToCoupe(c1, new Customer("Gosha", Gender.MALE_GENDER));
