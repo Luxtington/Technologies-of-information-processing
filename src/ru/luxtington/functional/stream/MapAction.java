@@ -1,4 +1,4 @@
-package ru.luxtington.functional;
+package ru.luxtington.functional.stream;
 
 public class MapAction<T,R> implements Actionable<T,R>{
 

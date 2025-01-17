@@ -1,4 +1,4 @@
-package ru.luxtington.functional;
+package ru.luxtington.functional.stream;
 
 public interface Applier<R,T>{
     R apply(T obj);

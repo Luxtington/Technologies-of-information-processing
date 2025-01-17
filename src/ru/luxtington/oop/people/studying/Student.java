@@ -35,17 +35,22 @@ public class Student implements MyComparable<Student> {
     }
 
     class AddMarkUpdate implements Update{
+        private Integer mark;
+
+        public AddMarkUpdate(Integer mark) {
+            this.mark = mark;
+        }
 
         @Override
         public void rollBack() {
-            Student.this.marks.remove(Student.this.marks.size() - 1);  // ???
+            Student.this.marks.remove(mark);
         }
     }
 
     class RemoveMarkUpdate implements Update{
         private Integer mark;
 
-        public RemoveMarkUpdate(Integer mark) {
+        private RemoveMarkUpdate(Integer mark) {
             this.mark = mark;
         }
 
@@ -60,7 +65,7 @@ public class Student implements MyComparable<Student> {
         private String oldName;
         private String newName;
 
-        public SetNameUpdate(String newName) {
+        private SetNameUpdate(String newName) {
             this.oldName = Student.this.name;
             this.newName = newName;
         }
@@ -74,7 +79,7 @@ public class Student implements MyComparable<Student> {
 
         private List<Integer> marks;
 
-        public AddMarksUpdate(List<Integer> marks) {
+        private AddMarksUpdate(List<Integer> marks) {
             this.marks = marks;
         }
 
@@ -152,7 +157,7 @@ public class Student implements MyComparable<Student> {
     public void addMark(int mark) throws IncorrectMarkException {
         if (rule.isCorrectMark(mark)){
             marks.add(mark);
-            updateHistory.push(new AddMarkUpdate());
+            updateHistory.push(new AddMarkUpdate(mark));
         }
 
         else

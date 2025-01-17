@@ -1,4 +1,4 @@
-package ru.luxtington.functional;
+package ru.luxtington.functional.stream;
 
 import org.jetbrains.annotations.NotNull;
 
