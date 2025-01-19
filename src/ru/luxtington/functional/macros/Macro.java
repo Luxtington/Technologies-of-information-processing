@@ -1,17 +1,20 @@
 package ru.luxtington.functional.macros;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
-public class Macro<T> {
+public class Macro<T> implements Action<T, T> {
     String title;
     List<T> data = new ArrayList<>();
     private List<Action<T, ?>> actions = new ArrayList<>();
+    private static Map<Integer, Macro<?>> allMacros = new HashMap<>();
 
     public static <T> Macro of(String title, List<T> data) {
-        return new Macro<>(title, data);
+        if (allMacros.containsKey(Objects.hash(title)))
+            return allMacros.get(Objects.hash(title));
+
+        Macro<T> newMacro = new Macro<>(title, data);
+        allMacros.put(Objects.hash(title), newMacro);
+        return newMacro;
     }
 
     private Macro(String title, List<T> data) {
@@ -19,13 +22,33 @@ public class Macro<T> {
         this.data = new ArrayList<>(data);
     }
 
+    @Override
+    public T execute(T elem) {
+        if (actions.isEmpty())
+            return elem;
+
+        Object tmp = elem;
+        for (Action<T, ?> action : actions){
+            tmp = action.execute((T)tmp);
+            if (tmp == null)
+                break;
+        }
+        return (T) tmp;
+    }
+
     public <R> Macro<R> map(Applier<T,R> applier){
-        actions.add(new MapAction<>(applier));
+        Macro newMacro = new Macro(applier.hashCode() + "", List.of());
+        newMacro.actions.add(new MapAction<>(applier));
+        actions.add(newMacro);
+        //actions.add(new MapAction<>(applier));
         return (Macro<R>) this;
     }
 
     public Macro<T> filter(Filter<T> filter){
-        actions.add(new FilterAction<>(filter));
+        Macro newMacro = new Macro(filter.hashCode() + "", List.of());
+        newMacro.actions.add(new FilterAction<>(filter));
+        actions.add(newMacro);
+        //actions.add(new FilterAction<>(filter));
         return this;
     }
 

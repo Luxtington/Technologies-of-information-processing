@@ -1,0 +1,22 @@
+        Child ch1 = new Child("Pete");
+        Child ch2 = new Child("Vasya");
+        Child ch3 = new Child("Gosha");
+
+
+        Parent p1 = new Parent("Olya",
+                (mark, child) -> System.out.printf("%s, u are debil cause of %d !!!\n", child.getName(), mark));
+
+
+        Parent p2 = new Parent("Dima",
+                (mark, child) -> System.out.printf("%s, u are so cool cause of %d :)\n", child.getName(), mark));
+
+        p1.addChild(ch1);
+        p2.addChild(ch2);
+
+        try{
+            ch1.setMarks(List.of(5,2,3));
+            ch2.setMarks(List.of(4,5,5));
+            ch3.setMarks(List.of(2,2,5));
+        } catch (IllegalMarkException e) {
+            throw new RuntimeException(e);
+        }

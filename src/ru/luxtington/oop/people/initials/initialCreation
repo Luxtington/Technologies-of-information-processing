@@ -1,18 +1,3 @@
-package ru.luxtington.main;
-
-import ru.luxtington.oop.people.family.Child;
-import ru.luxtington.oop.people.family.IllegalMarkException;
-import ru.luxtington.oop.people.family.Parent;
-import ru.luxtington.oop.people.family.Swearing;
-import ru.luxtington.oop.people.initials.Initial;
-import ru.luxtington.oop.people.initials.ProxyComparator;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class Main {
-    public static void main(String[] args) {
         Initial name1 =  Initial.of("Ivanov", "Ivan", "Ivanovich");
         Initial name2 =  Initial.of("Ivan", "Ivanov", "Ivanovich");
         Initial name3 =  Initial.of("I", "Ivav", "noich");
@@ -25,5 +10,3 @@ public class Main {
         lst.sort(new ProxyComparator(name1));
 
         System.out.println(lst);
-    }
-}
