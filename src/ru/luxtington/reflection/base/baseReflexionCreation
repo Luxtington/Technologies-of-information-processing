@@ -1,0 +1,28 @@
+//        TestExecutor.execute(Tests.class);
+
+
+//        List<Field> res = Reflector.fieldCollection(Triangle.class);
+//        for (Field f : res)
+//            System.out.println(f);
+
+//        Line<Point2D> l1 = Line.createLine2D(1,2,3,4);
+//        Line<Point2D> l2 = Line.createLine2D(6,7,8,9);
+//
+//        Reflector.lineConnector(l1, l2);
+//        System.out.println(l1 + ", " + l2);
+
+//        B b = new B(1, "sdgd", 99);
+//        b.bNum = 0;
+//        System.out.println(b);
+
+//        Boy boy = new Boy(-1, "skdfj", 22);
+//        Reflector.validate(boy, TestBoyClass.class);
+
+//        Boy b1 = new Boy(12, "Vasya", 2), b2 = new Boy(25, "Gena", 2);
+//        String fileName = "C:\\СГТУ\\ИФСТ22\\Technologies-of-information-processing\\src\\ru\\luxtington\\reflection\\base\\tmp.txt";
+//
+//        ObjectsWriter<Boy> objectsWriter = new ObjectsWriter<>(fileName);
+//        objectsWriter.writeObjectsToFile(List.of(b1, b2));
+//
+//        ObjectsReader<Boy> objectsReader = new ObjectsReader<>(fileName);
+//        System.out.println(objectsReader.loadObjectsFromFile());

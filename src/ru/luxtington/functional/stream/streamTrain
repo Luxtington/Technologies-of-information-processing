@@ -1,0 +1,65 @@
+         Scanner sc = new Scanner(new File("C:\\СГТУ\\ИФСТ22\\Technologies-of-information-processing\\src\\ru\\luxtington\\main\\points.txt"));
+
+         var listPol= Stream.generate(() -> {
+             if (sc.hasNextInt()) {
+                 int x = sc.nextInt();
+                 if (sc.hasNextInt()) {
+                     int y = sc.nextInt();
+                     return new Point2D(x, y);
+                 }
+             }
+             return null;
+         })     .takeWhile(Objects::nonNull)
+                .distinct()
+                .map(point -> new Point2D(point.x, Math.abs(point.y)))
+                .sorted(Comparator.comparingInt(point -> point.x))
+                .collect(Collectors.groupingBy(point -> point.y))
+                .values()
+                .stream()
+                .map(Polyline::new)
+                .toList();
+
+        System.out.println(listPol);
+
+
+        /*List<Point2D> lst = List.of(new Point2D(3,2), new Point2D(4,-5),
+                new Point2D(1,1), new Point2D(-9, 7));
+
+        Polyline<Point2D> p = lst.stream()
+                .distinct()
+                .sorted((o1, o2) -> {
+                    if (o1.x == o2.x)
+                        return o2.y - o1.y;
+                    else
+                        return o2.x - o1.x;
+                })
+                .map((Function<Point2D, Object>) point2D -> new Point2D(point2D.x, Math.abs(point2D.y)))
+                .collect(() -> new Polyline<>(),
+                        (line, point) -> line.points.add((Point2D) point),
+                        (Polyline<Point2D> polyline, Polyline<Point2D> polyline2) -> polyline.points.add((Point2D) polyline2.points));
+
+
+        System.out.println(p);*/
+//        var res = lst.stream()
+//                      .map(Math :: abs)
+//                      .collect(Collectors.groupingBy(num -> num %2==0))
+//                      .values();
+
+//        var res = lst.stream()
+//                        .map(num -> Math.abs(num))
+//                                .collect(Collectors.partitioningBy(num -> num%2==0)).values();
+
+        //System.out.println(res);
+
+
+
+
+       /*
+       List<String> lst = List.of("ahshd", "qdjjfg", "sdjfjjgg", "qdjf", "kdfg");
+       int res = lst.stream()
+                    .filter(s -> s.toCharArray()[0] == 'q')
+                    .map(String::length)
+                    .reduce(0, Integer::sum);*/
+
+        //List<Integer> res = lst.stream()
+                //.

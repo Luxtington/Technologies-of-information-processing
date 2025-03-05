@@ -1,0 +1,2 @@
+ru.luxtington.oop.people.family.Boy{age=12, name='Vasya', parentsQuantity=2}
+ru.luxtington.oop.people.family.Boy{age=25, name='Gena', parentsQuantity=2}
