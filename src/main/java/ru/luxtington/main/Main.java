@@ -1,6 +1,10 @@
 package ru.luxtington.main;
 
-import ru.luxtington.annotations.*;
+import ru.luxtington.main.tmp.My;
+import ru.luxtington.main.tmp.Testable;
+import ru.luxtington.reflection.base.other.UpCacher;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -22,50 +26,16 @@ public class Main {
 //
 //        Reflector.validate(new Boy(-10, "Vasya", 22));
 
-//        List<Able> ables = Cacher.cache(new My("ajah", 14));
-//        Able m1 = ables.get(0);
-//        System.out.println(m1.getNum());
-//        System.out.println(m1.getData());
-//        System.out.println(m1.getData());
-//        System.out.println("============");
-//        m1.setData("ratata");
-//        System.out.println(m1.getData());
-//        System.out.println(m1.getData());
-//        System.out.println(m1.getNum());
-
-
+        List<Testable> ables = UpCacher.cache(new My("ajah", 14));
+        Testable m1 = ables.get(0);
+        System.out.println(m1.getNum());
+        System.out.println(m1.getData());
+        System.out.println(m1.getData());
+        System.out.println("============");
+        m1.setData("ratata");
+        System.out.println(m1.getData());
+        System.out.println(m1.getData());
+        System.out.println(m1.getNum());
     }
 }
 
-interface Able {
-    String getData();
-    Integer getNum();
-    void setData(String data);
-}
-@Cache("getData")
-@Default(DefaultValuesHolder.class)
-class My implements Able{
-    private String data;
-    public Integer num;
-
-    public My(String data, Integer num) {
-        this.data = data;
-        this.num = num;
-    }
-
-    @Override
-    public String getData() {
-        System.out.println("Original data");
-        return data;
-    }
-
-    public Integer getNum() {
-        System.out.println("Original num");
-        return num;
-    }
-
-    @Override
-    public void setData(String data) {
-        this.data = data;
-    }
-}
