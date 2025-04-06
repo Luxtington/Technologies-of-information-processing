@@ -71,7 +71,7 @@ public class Reflector {
             } else {
                 Annotation an = Arrays.stream(o.getClass().getAnnotations())
                         .filter(annotation -> annotation.annotationType().isAnnotationPresent(Validate.class))
-                        .findFirst().orElse(null); // по сути nullа никогда не будет
+                        .findFirst().orElse(null); // по сути null никогда не будет
                 testClasses = List.of(an.annotationType().getAnnotation(Validate.class).value());
             }
 
@@ -100,6 +100,7 @@ public class Reflector {
             }
         }
     }
+
 
 //    public static void validate(Object object, Class<?> testClass){
 //        Map<Method, Throwable> logs = new HashMap<>();

@@ -2,6 +2,8 @@ package ru.luxtington.main;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.luxtington.reflection.base.other.B;
+import ru.luxtington.reflection.hard.Remembers;
 import ru.luxtington.spring.beans.Feedback;
 import ru.luxtington.spring.stocks.Bot;
 import ru.luxtington.spring.stocks.Printer;
@@ -77,6 +79,10 @@ public class Main {
 //
 //        s1.setCost(999);
 //        s2.setCost(10);
+
+        B b = new B();
+        Remembers.reset(b);
+        System.out.println(b);
 
     }
 }

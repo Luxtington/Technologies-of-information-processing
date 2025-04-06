@@ -6,10 +6,11 @@ import ru.luxtington.annotations.ToString;
 import ru.luxtington.annotations.ToStringOption;
 
 @ToString(ToStringOption.NO)
+@Default(DefaultValuesHolder.class)
 public class A extends Entity{
     @ToString(ToStringOption.YES)
     private int aNumber;
-    @Default(DefaultValuesHolder.class)
+    //@Default(DefaultValuesHolder.class)
     private String aCategory;
 
     public A() {

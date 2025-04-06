@@ -8,8 +8,7 @@ import ru.luxtington.oop.people.family.Boy;
 
 @ToString(ToStringOption.YES)
 @Default(DefaultValuesHolder.class)
-public class
-B extends A{
+public class B extends A{
     public double bNum;
 
     public B() {
@@ -20,4 +19,8 @@ B extends A{
         super(a,b);
         this.bNum = bNum;
     }
+
+    private static int xxx;
+    long zzz;
+
 }

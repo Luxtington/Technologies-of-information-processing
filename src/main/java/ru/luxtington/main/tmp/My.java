@@ -1,9 +1,8 @@
 package ru.luxtington.main.tmp;
 
-import ru.luxtington.annotations.Cache;
-import ru.luxtington.annotations.Default;
-import ru.luxtington.annotations.DefaultValuesHolder;
-import ru.luxtington.annotations.Mutator;
+import ru.luxtington.annotations.*;
+
+import javax.swing.text.html.parser.Entity;
 
 @Default(DefaultValuesHolder.class)
 public class My implements Testable {
