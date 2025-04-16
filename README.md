@@ -11,3 +11,4 @@ During studying this course I mastered next things:
 6) Reflexion API, annotation processors
 7) JUnit
 8) Maven, DI
+9) Bean Post Processors, Bean Factory Post Processors
