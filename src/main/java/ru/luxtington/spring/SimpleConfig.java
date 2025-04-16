@@ -1,20 +1,21 @@
 package ru.luxtington.spring;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
-import ru.luxtington.oop.people.studying.Student;
 import ru.luxtington.spring.beans.Feedback;
 import ru.luxtington.spring.beans.RandBean;
 import ru.luxtington.spring.utils.SpringStudent;
 
 import java.util.*;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 @Configuration
 public class SimpleConfig {
+
     @Bean
-    public String halloBean(){
+    @Lazy
+    public String halloBean(@Autowired BeanFactory beanFactory){
         return "hallo, world!";
     }
 //    @Bean
@@ -35,13 +36,18 @@ public class SimpleConfig {
     }
 
     @Bean
-    public int min(){
+    public int minInt(){
         return 1;
     }
 
     @Bean
-    public int max(){
+    public int maxInt(){
         return 5;
+    }
+
+    @Bean
+    public double justDouble(){
+        return 67.89;
     }
 
     @Bean

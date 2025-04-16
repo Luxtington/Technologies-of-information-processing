@@ -1,17 +1,30 @@
-package ru.luxtington.main.tmp;
+package ru.luxtington.spring.beans;
 
 import org.springframework.stereotype.Component;
-import ru.luxtington.annotations.*;
+import ru.luxtington.annotations.Cache;
+import ru.luxtington.annotations.DefaultNew;
+import ru.luxtington.annotations.Mutator;
+import ru.luxtington.main.tmp.Testable;
 
-@Default(DefaultValuesHolder.class)
-public class My implements Testable {
+@Component
+@DefaultNew("valuesHolder")
+public class MyTest implements Testable {
     private int originalMethodsCalls;
-    private String data;
-    public Integer num;
 
-    public My(String data, Integer num) {
+    @DefaultNew("halloBean")
+    private String data;
+
+    private Integer num;
+
+    @DefaultNew("justDouble")
+    private double aDouble;
+
+    public MyTest(String data, Integer num) {
         this.data = data;
         this.num = num;
+    }
+
+    public MyTest() {
     }
 
     @Cache
@@ -59,5 +72,15 @@ public class My implements Testable {
 
     public int getOriginalMethodsCalls() {
         return originalMethodsCalls;
+    }
+
+    @Override
+    public String toString() {
+        return "MyTest{" +
+                "originalMethodsCalls=" + originalMethodsCalls +
+                ", data='" + data + '\'' +
+                ", num=" + num +
+                ", aDouble=" + aDouble +
+                '}';
     }
 }
